@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+apply plugin: "kotlin-android"
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+//apply plugin: 'com.novoda.bintray-release'
+
+android {
+    dataBinding {
+        enabled true
+    }
+    def versions = rootProject.ext.versions
+    compileSdkVersion rootProject.ext.versions.compileSdkVersion
+    buildToolsVersion rootProject.ext.versions.buildToolsVersion
+    defaultConfig {
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode versions.versionCode
+        versionName versions.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    compileOptions {
+        sourceCompatibility versions.sourceCompatibility
+        targetCompatibility versions.targetCompatibility
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation dependencies.appcompat
+    implementation dependencies.recyclerview
+    implementation dependencies.barlibrary
+    implementation dependencies.backgroundlibrary
+    implementation dependencies.blankj_utilcode
+    api dependencies.fragmentation_core
+    api dependencies.fragmentation_swipeback
+    implementation dependencies.lifecycle_extensions
+    testImplementation dependencies.junit
+    androidTestImplementation dependencies.test_runner
+    androidTestImplementation dependencies.test_espresso_core
+
+}
+
+//publish {
+//    userOrg = "ubitar"
+//    groupId = "com.ubitar.capybara"
+//    artifactId = 'archcapybara-mvvm'
+//    publishVersion = "1.0.0"
+//    desc = "a mvvm arch in archcapybara"
+//    website = "https://github.com/Ubitar/ArchCapybara"
+//}

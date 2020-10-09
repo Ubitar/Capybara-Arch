@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    dataBinding {
+        enabled true
+    }
+    def versions = rootProject.ext.versions
+    compileSdkVersion rootProject.ext.versions.compileSdkVersion
+    buildToolsVersion rootProject.ext.versions.buildToolsVersion
+    defaultConfig {
+        applicationId "com.example.archcapybara"
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode versions.versionCode
+        versionName versions.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "ArchCapybara${defaultConfig.versionName}_release.apk"
+            }
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    androidExtensions {
+        experimental = true
+    }
+    compileOptions {
+        sourceCompatibility versions.sourceCompatibility
+        targetCompatibility versions.targetCompatibility
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation dependencies.appcompat
+    implementation dependencies.recyclerview
+    implementation dependencies.constraint
+    implementation dependencies.barlibrary
+    implementation dependencies.backgroundlibrary
+    implementation dependencies.rxpermissions
+    implementation dependencies.rxjava2
+    implementation dependencies.rxandroid2
+    implementation dependencies.retrofit2
+    implementation dependencies.retrofit2rxjava
+    implementation dependencies.retrofit2_converter_gson
+    implementation dependencies.gson
+    implementation dependencies.autodisposeandroid
+    implementation dependencies.autodisposearchcomponents
+    implementation dependencies.blankj_utilcode
+    implementation dependencies.base_recycler_view_adapter_helper
+    implementation dependencies.xpopup
+    implementation dependencies.tablayout
+    implementation dependencies.lifecycle_extensions
+    implementation dependencies.viewpager2
+    implementation dependencies.live_event_bus
+//    implementation 'com.ubitar.capybara:archcapybara-mvvm:1.0.0'
+//    implementation 'com.ubitar.capybara:archcapybara-network:1.0.0'
+    testImplementation dependencies.junit
+    androidTestImplementation dependencies.test_runner
+    androidTestImplementation dependencies.test_espresso_core
+
+    implementation project(":library-mvvm")
+    implementation project(":library-network")
+}
