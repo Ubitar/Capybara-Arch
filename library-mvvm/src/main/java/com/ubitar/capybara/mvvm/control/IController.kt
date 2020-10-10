@@ -11,12 +11,16 @@ interface IController : LifecycleOwner {
         isOutsideEnable: Boolean,
         isBackEnable: Boolean,
         onCanceledListener: (() -> Unit)?,
-        extra: Any? = null
+        extra: Array<out Any?>
     )
 
     fun hideLoading()
 
-    fun showMessage(text: String, extra: Any? = null)
+    fun showMessage(text: String, extra: Array<out Any?>)
+
+    fun showSuccess(text: String, extra: Array<out Any?>)
+
+    fun showFail(text: String, extra: Array<out Any?>)
 
     fun onDestroyController()
 

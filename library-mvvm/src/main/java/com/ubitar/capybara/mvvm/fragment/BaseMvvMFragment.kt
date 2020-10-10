@@ -124,13 +124,19 @@ abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<
             popTo(it.targetFragmentClass, it.includeTargetFragment)
         })
         viewModel.getBaseActions().showLoadingAction.observe(viewLifecycleOwner, Observer {
-            showLoading(it.isCancelEnable, it.isBackEnable, it.listener)
+            showLoading(it.isCancelEnable, it.isBackEnable, it.dismissListener, it.extra)
         })
         viewModel.getBaseActions().hideLoadingAction.observe(viewLifecycleOwner, Observer {
             hideLoading()
         })
         viewModel.getBaseActions().showMessageAction.observe(viewLifecycleOwner, Observer {
-            showMessage(it)
+            showMessage(it.text, it.extra)
+        })
+        viewModel.getBaseActions().showSuccessAction.observe(viewLifecycleOwner, Observer {
+            showSuccess(it.text, it.extra)
+        })
+        viewModel.getBaseActions().showFailAction.observe(viewLifecycleOwner, Observer {
+            showFail(it.text, it.extra)
         })
     }
 

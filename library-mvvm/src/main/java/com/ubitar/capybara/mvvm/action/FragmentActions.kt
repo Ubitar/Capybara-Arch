@@ -20,6 +20,9 @@ open class FragmentActions {
     val showLoadingAction: ShowLoadingAction by lazy { ShowLoadingAction() }
     val hideLoadingAction: HideLoadingAction by lazy { HideLoadingAction() }
     val showMessageAction: ShowMessageAction by lazy { ShowMessageAction() }
+    val showSuccessAction: ShowSuccessAction by lazy { ShowSuccessAction() }
+    val showFailAction: ShowFailAction by lazy { ShowFailAction() }
+
     val hideKeyboardAction: HideKeyboardAction by lazy { HideKeyboardAction() }
 
     class OnBackPressedSupportAction : SingleLiveAction<Any>() {
@@ -148,6 +151,7 @@ open class FragmentActions {
         )
 
     }
+
     class ShowLoadingAction : SingleLiveAction<ShowLoadingAction.ShowLoading>() {
 
         override fun describe(): String {
@@ -157,10 +161,11 @@ open class FragmentActions {
         data class ShowLoading(
             val isCancelEnable: Boolean,
             val isBackEnable: Boolean,
-            val listener: (() -> Unit)?
+            val dismissListener: (() -> Unit)?,
+            val extra: Array<out Any?>
         )
-
     }
+
     class HideLoadingAction : SingleLiveAction<Any>() {
 
         override fun describe(): String {
@@ -168,16 +173,43 @@ open class FragmentActions {
         }
 
     }
-    class ShowMessageAction : SingleLiveAction<String>() {
+
+    class ShowMessageAction : SingleLiveAction<ShowMessageAction.ShowMessage>() {
         override fun describe(): String {
             return "IController.showMessage()"
         }
+        data class ShowMessage(
+            val text: String,
+            val extra: Array<out Any?>
+        )
     }
-
 
     class HideKeyboardAction : SingleLiveAction<Any>() {
         override fun describe(): String {
             return "BaseFragment.hideKeyBoard()"
         }
+    }
+
+
+    class ShowSuccessAction : SingleLiveAction<ShowSuccessAction.ShowSuccess>() {
+        override fun describe(): String {
+            return "IController.showSuccess()"
+        }
+
+        data class ShowSuccess(
+            val text: String,
+            val extra: Array<out Any?>
+        )
+    }
+
+    class ShowFailAction : SingleLiveAction<ShowFailAction.ShowFail>() {
+        override fun describe(): String {
+            return "IController.showFail()"
+        }
+
+        data class ShowFail(
+            val text: String,
+            val extra: Array<out Any?>
+        )
     }
 }

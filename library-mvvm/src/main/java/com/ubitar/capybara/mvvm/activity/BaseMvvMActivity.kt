@@ -105,13 +105,19 @@ abstract class BaseMvvMActivity<V : ViewDataBinding, VM : BaseActivityViewModel<
             )
         })
         viewModel.getBaseActions().showLoadingAction.observe(this, Observer {
-            showLoading(it.isCancelEnable, it.isBackEnable, it.listener)
+            showLoading(it.isCancelEnable, it.isBackEnable, it.dismissListener, it.extra)
         })
         viewModel.getBaseActions().hideLoadingAction.observe(this, Observer {
             hideLoading()
         })
         viewModel.getBaseActions().showMessageAction.observe(this, Observer {
-            showMessage(it)
+            showMessage(it.text, it.extra)
+        })
+        viewModel.getBaseActions().showSuccessAction.observe(this, Observer {
+            showSuccess(it.text, it.extra)
+        })
+        viewModel.getBaseActions().showFailAction.observe(this, Observer {
+            showFail(it.text, it.extra)
         })
     }
 

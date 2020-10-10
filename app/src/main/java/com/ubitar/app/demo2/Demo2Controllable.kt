@@ -11,13 +11,7 @@ class Demo2Controllable : IControllable {
 
     private var loadingDialog: WeakReference<LoadingDialog>? = null
 
-    override fun showLoading(
-        controller: IController,
-        isOutsideEnable: Boolean,
-        isBackEnable: Boolean,
-        onCanceledListener: (() -> Unit)?,
-        extra:Any?
-    ) {
+    override fun showLoading(controller: IController, isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
         loadingDialog = WeakReference(LoadingDialog.Builder()
             .setOutsideCancelable(isOutsideEnable)
             .setBackEnable(isBackEnable)
@@ -26,15 +20,21 @@ class Demo2Controllable : IControllable {
             }
             .build()
         )
-        loadingDialog?.get()?.show((controller as BaseActivity<*,*>).supportFragmentManager, "loading")
+        loadingDialog?.get()?.show((controller as BaseActivity<*, *>).supportFragmentManager, "loading")
     }
 
     override fun hideLoading() {
         loadingDialog?.get()?.dismiss()
     }
 
-    override fun showMessage(text: String,extra: Any?) {
+    override fun showMessage(text: String, extra: Array<out Any?>) {
         ToastUtils.showShort(text)
+    }
+
+    override fun showSuccess(text: String, extra: Array<out Any?>) {
+    }
+
+    override fun showFail(text: String, extra: Array<out Any?>) {
     }
 
     override fun onDestroy() {

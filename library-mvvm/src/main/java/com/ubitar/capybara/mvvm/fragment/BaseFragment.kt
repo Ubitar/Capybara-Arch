@@ -93,11 +93,11 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
     }
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {
-        val enterAnim= arguments?.getInt("custom_enter_transition_animation", R.anim.h_fragment_enter)?: R.anim.h_fragment_enter
-        val exitAnim=arguments?.getInt("custom_exit_transition_animation", R.anim.h_fragment_exit)?:R.anim.h_fragment_exit
-        val popEnterAnim= arguments?.getInt("custom_pop_enter_transition_animation", R.anim.h_fragment_pop_enter)?: R.anim.h_fragment_pop_enter
-        val popExitAnim=arguments?.getInt("custom_pop_exit_transition_animation", R.anim.h_fragment_pop_exit)?:R.anim.h_fragment_pop_exit
-        return FragmentAnimator(enterAnim,exitAnim,popEnterAnim,popExitAnim)
+        val enterAnim = arguments?.getInt("custom_enter_transition_animation", R.anim.h_fragment_enter) ?: R.anim.h_fragment_enter
+        val exitAnim = arguments?.getInt("custom_exit_transition_animation", R.anim.h_fragment_exit) ?: R.anim.h_fragment_exit
+        val popEnterAnim = arguments?.getInt("custom_pop_enter_transition_animation", R.anim.h_fragment_pop_enter) ?: R.anim.h_fragment_pop_enter
+        val popExitAnim = arguments?.getInt("custom_pop_exit_transition_animation", R.anim.h_fragment_pop_exit) ?: R.anim.h_fragment_pop_exit
+        return FragmentAnimator(enterAnim, exitAnim, popEnterAnim, popExitAnim)
     }
 
 
@@ -112,21 +112,23 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         })
     }
 
-    override fun showLoading(
-        isCancelEnable: Boolean,
-        isBackEnable: Boolean,
-        onCanceledListener: (() -> Unit)?,
-        extra: Any?
-    ) {
-        controllerProvider.get()
-            .showLoading(this, isCancelEnable, isBackEnable, onCanceledListener, extra)
+    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?,  extra: Array<out Any?>) {
+        controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
+    }
+
+    override fun showSuccess(text: String,  extra: Array<out Any?>) {
+        controllerProvider.get().showSuccess(text, extra)
+    }
+
+    override fun showFail(text: String,  extra: Array<out Any?>) {
+        controllerProvider.get().showFail(text, extra)
     }
 
     override fun hideLoading() {
         controllerProvider.get().hideLoading()
     }
 
-    override fun showMessage(text: String, extra: Any?) {
+    override fun showMessage(text: String,  extra: Array<out Any?>) {
         controllerProvider.get().showMessage(text, extra)
     }
 

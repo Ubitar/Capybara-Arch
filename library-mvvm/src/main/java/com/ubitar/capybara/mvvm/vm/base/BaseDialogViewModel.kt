@@ -1,7 +1,9 @@
 package com.ubitar.capybara.mvvm.vm.base
 
 import android.app.Application
+import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.action.DialogActions
+import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
 
 abstract class BaseDialogViewModel<M : BaseModel>(application: Application) :
@@ -24,13 +26,15 @@ abstract class BaseDialogViewModel<M : BaseModel>(application: Application) :
     fun showLoading(
         isCancelEnable: Boolean = false,
         isBackEnable: Boolean = true,
-        listener: (() -> Unit)? = null
+        dismissListener: (() -> Unit)? = null,
+        vararg extra: Any?
     ) {
         baseActions.showLoadingAction.call(
             DialogActions.ShowLoadingAction.ShowLoading(
                 isCancelEnable,
                 isBackEnable,
-                listener
+                dismissListener,
+                extra
             )
         )
     }
@@ -39,8 +43,26 @@ abstract class BaseDialogViewModel<M : BaseModel>(application: Application) :
         baseActions.hideLoadingAction.call()
     }
 
-    fun showMessage(text: String) {
-        baseActions.showMessageAction.call(text)
+    fun showMessage(text: String,vararg extra: Any?) {
+        baseActions.showMessageAction.call(DialogActions.ShowMessageAction.ShowMessage(text,extra))
+    }
+
+    fun showSuccess(
+        text: String,
+        vararg extra: Any?
+    ) {
+        baseActions.showSuccessAction.call(
+            DialogActions.ShowSuccessAction.ShowSuccess(text, extra)
+        )
+    }
+
+    fun showFail(
+        text: String,
+        vararg extra: Any?
+    ) {
+        baseActions.showFailAction.call(
+            DialogActions.ShowFailAction.ShowFail(text, extra)
+        )
     }
 
     fun getBaseActions(): DialogActions {

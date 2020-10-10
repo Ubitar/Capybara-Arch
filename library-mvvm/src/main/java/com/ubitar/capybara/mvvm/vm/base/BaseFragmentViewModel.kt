@@ -3,6 +3,7 @@ package com.ubitar.capybara.mvvm.vm.base
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import com.ubitar.capybara.mvvm.action.DialogActions
 import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
 import me.yokeyword.fragmentation.ISupportFragment
@@ -180,13 +181,15 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
     fun showLoading(
         isCancelEnable: Boolean = false,
         isBackEnable: Boolean = true,
-        listener: (() -> Unit)? = null
+        dismissListener: (() -> Unit)? = null,
+        vararg extra: Any?
     ) {
         baseActions.showLoadingAction.call(
             FragmentActions.ShowLoadingAction.ShowLoading(
                 isCancelEnable,
                 isBackEnable,
-                listener
+                dismissListener,
+                extra
             )
         )
     }
@@ -195,14 +198,32 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
         baseActions.hideLoadingAction.call()
     }
 
-    fun showMessage(text: String) {
-        baseActions.showMessageAction.call(text)
+    fun showMessage(text: String,vararg extra: Any?) {
+        baseActions.showMessageAction.call(FragmentActions.ShowMessageAction.ShowMessage(text,extra))
+    }
+
+    fun showSuccess(
+        text: String,
+        vararg extra: Any?
+    ) {
+        baseActions.showSuccessAction.call(
+            FragmentActions.ShowSuccessAction.ShowSuccess(text, extra)
+        )
+    }
+
+    fun showFail(
+        text: String,
+        vararg extra: Any?
+    ) {
+        baseActions.showFailAction.call(
+            FragmentActions.ShowFailAction.ShowFail(text, extra)
+        )
     }
 
     /**
      * 收起键盘
      */
-    fun hideKeyboard(){
+    fun hideKeyboard() {
         baseActions.hideKeyboardAction.call()
     }
 

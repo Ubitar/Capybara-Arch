@@ -140,22 +140,24 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
 
     }
 
-    override fun showLoading(
-        isCancelEnable: Boolean,
-        isBackEnable: Boolean,
-        onCanceledListener: (() -> Unit)?,
-        extra:Any?
-    ) {
-        controllerProvider.get().showLoading(this, isCancelEnable, isBackEnable, onCanceledListener,extra)
+    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?,  extra: Array<out Any?>) {
+        controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
+    }
+
+    override fun showSuccess(text: String,  extra: Array<out Any?>) {
+        controllerProvider.get().showSuccess(text, extra)
+    }
+
+    override fun showFail(text: String,  extra: Array<out Any?>) {
+        controllerProvider.get().showFail(text, extra)
     }
 
     override fun hideLoading() {
         controllerProvider.get().hideLoading()
     }
 
-    override fun showMessage(text: String,extra: Any?) {
-        controllerProvider.get().showMessage(text,extra)
+    override fun showMessage(text: String, extra: Array<out Any?>) {
+        controllerProvider.get().showMessage(text, extra)
     }
-
 
 }

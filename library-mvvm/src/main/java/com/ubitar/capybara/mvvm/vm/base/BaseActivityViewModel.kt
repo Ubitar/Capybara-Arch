@@ -123,13 +123,15 @@ abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
     fun showLoading(
         isCancelEnable: Boolean = false,
         isBackEnable: Boolean = true,
-        listener: (() -> Unit)? = null
+        dismissListener: (() -> Unit)? = null,
+        vararg extra: Any?
     ) {
         baseActions.showLoadingAction.call(
             ActivityActions.ShowLoadingAction.ShowLoading(
                 isCancelEnable,
                 isBackEnable,
-                listener
+                dismissListener,
+                extra
             )
         )
     }
@@ -138,8 +140,26 @@ abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
         baseActions.hideLoadingAction.call()
     }
 
-    fun showMessage(text: String) {
-        baseActions.showMessageAction.call(text)
+    fun showMessage(text: String,vararg extra: Any?) {
+        baseActions.showMessageAction.call(ActivityActions.ShowMessageAction.ShowMessage(text,extra))
+    }
+
+    fun showSuccess(
+        text: String,
+        vararg extra: Any?
+    ) {
+        baseActions.showSuccessAction.call(
+            ActivityActions.ShowSuccessAction.ShowSuccess(text, extra)
+        )
+    }
+
+    fun showFail(
+        text: String,
+        vararg extra: Any?
+    ) {
+        baseActions.showFailAction.call(
+            ActivityActions.ShowFailAction.ShowFail(text, extra)
+        )
     }
 
     fun getBaseActions(): ActivityActions {

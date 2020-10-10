@@ -12,13 +12,7 @@ import java.lang.ref.WeakReference
 class AppControllable : IControllable {
     private var loadingPopup: WeakReference<BasePopupView>? = null
 
-    override fun showLoading(
-        controller: IController,
-        isOutsideEnable: Boolean,
-        isBackEnable: Boolean,
-        onCanceledListener: (() -> Unit)?,
-        extra:Any?
-    ) {
+    override fun showLoading(controller: IController, isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
         loadingPopup?.get()?.dismiss()
         loadingPopup = WeakReference(
             XPopup.Builder(controller.getContext())
@@ -32,17 +26,21 @@ class AppControllable : IControllable {
                     }
                 })
                 .asCustom(LoadingPopup.Builder().setText("加载中").build(controller))
-                .show())
-    }
+                .show())    }
 
     override fun hideLoading() {
         loadingPopup?.get()?.dismiss()
     }
 
-    override fun showMessage(text: String,extra: Any?) {
+    override fun showMessage(text: String, extra: Array<out Any?>) {
         ToastUtils.showShort(text)
     }
 
+    override fun showSuccess(text: String, extra: Array<out Any?>) {
+    }
+
+    override fun showFail(text: String, extra: Array<out Any?>) {
+    }
 
     override fun onDestroy() {
         hideLoading()

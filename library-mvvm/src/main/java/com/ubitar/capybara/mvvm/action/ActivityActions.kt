@@ -17,19 +17,23 @@ open class ActivityActions {
     val showLoadingAction: ShowLoadingAction by lazy { ShowLoadingAction() }
     val hideLoadingAction: HideLoadingAction by lazy { HideLoadingAction() }
     val showMessageAction: ShowMessageAction by lazy { ShowMessageAction() }
+    val showSuccessAction: ShowSuccessAction by lazy { ShowSuccessAction() }
+    val showFailAction: ShowFailAction by lazy { ShowFailAction() }
 
     class OnBackPressedSupportAction : SingleLiveAction<Any>() {
         override fun describe(): String {
             return "ISupportFragment.onBackPressedSupport()"
         }
     }
+
     class PopAction : SingleLiveAction<Any>() {
         override fun describe(): String {
             return "ISupportFragment.pop()方法"
         }
 
     }
-    class PostAction: SingleLiveAction<Runnable>() {
+
+    class PostAction : SingleLiveAction<Runnable>() {
         override fun describe(): String {
             return "Context.post()"
         }
@@ -47,17 +51,20 @@ open class ActivityActions {
             val launchMode: Int? = null
         )
     }
+
     class FinishAction : SingleLiveAction<Any>() {
         override fun describe(): String {
             return "Activity.finish()方法"
         }
 
     }
+
     class FinishAfterTransitionAction : SingleLiveAction<Any>() {
         override fun describe(): String {
             return "ActivityCompact.finishAfterTransition()"
         }
     }
+
     class LoadRootFragmentAction : SingleLiveAction<LoadRootFragmentAction.LoadRootFragment>() {
         override fun describe(): String {
             return "Activity.loadRootFragment()"
@@ -68,6 +75,7 @@ open class ActivityActions {
             val toFragment: ISupportFragment
         )
     }
+
     class PopToAction : SingleLiveAction<PopToAction.PopTo>() {
         override fun describe(): String {
             return "Activity.popTo()方法"
@@ -81,6 +89,7 @@ open class ActivityActions {
         )
 
     }
+
     class SetResultAction : SingleLiveAction<SetResultAction.SetResult>() {
 
         override fun describe(): String {
@@ -93,6 +102,7 @@ open class ActivityActions {
         )
 
     }
+
     class StartWithPopToAction : SingleLiveAction<StartWithPopToAction.StartWithPopTo>() {
         override fun describe(): String {
             return "Activity.startWithPopTo()"
@@ -105,6 +115,7 @@ open class ActivityActions {
         )
 
     }
+
     class ShowLoadingAction : SingleLiveAction<ShowLoadingAction.ShowLoading>() {
 
         override fun describe(): String {
@@ -114,10 +125,11 @@ open class ActivityActions {
         data class ShowLoading(
             val isCancelEnable: Boolean,
             val isBackEnable: Boolean,
-            val listener: (() -> Unit)?
+            val dismissListener: (() -> Unit)?,
+            val extra: Array<out Any?>
         )
-
     }
+
     class HideLoadingAction : SingleLiveAction<Any>() {
 
         override fun describe(): String {
@@ -125,9 +137,36 @@ open class ActivityActions {
         }
 
     }
-    class ShowMessageAction : SingleLiveAction<String>() {
+
+    class ShowMessageAction : SingleLiveAction<ShowMessageAction.ShowMessage>() {
         override fun describe(): String {
             return "IController.showMessage()"
         }
+        data class ShowMessage(
+            val text: String,
+            val extra: Array<out Any?>
+        )
+    }
+
+    class ShowSuccessAction : SingleLiveAction<ShowSuccessAction.ShowSuccess>() {
+        override fun describe(): String {
+            return "IController.showSuccess()"
+        }
+
+        data class ShowSuccess(
+            val text: String,
+            val extra: Array<out Any?>
+        )
+    }
+
+    class ShowFailAction : SingleLiveAction<ShowFailAction.ShowFail>() {
+        override fun describe(): String {
+            return "IController.showFail()"
+        }
+
+        data class ShowFail(
+            val text: String,
+            val extra: Array<out Any?>
+        )
     }
 }

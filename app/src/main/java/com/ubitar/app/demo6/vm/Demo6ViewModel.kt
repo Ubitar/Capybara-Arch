@@ -13,8 +13,8 @@ class Demo6ViewModel(application: Application) : BaseActivityViewModel<EmptyMode
     override fun onCreateActions(): ActivityActions? = null
 
     fun onClickBtn1(view: View) {
-        showLoading(false, true) {
+        showLoading(false, true,{
             showMessage("加载框关闭了")
-        }
+        })
     }
 }

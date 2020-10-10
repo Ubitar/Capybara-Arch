@@ -10,12 +10,16 @@ interface IControllable {
         isOutsideEnable: Boolean = false,
         isBackEnable: Boolean = true,
         onCanceledListener: (() -> Unit)? = null,
-        extra: Any? = null
+        extra: Array<out Any?>
     )
 
     fun hideLoading()
 
-    fun showMessage(text: String, extra: Any? = null)
+    fun showMessage(text: String, vararg extra: Any?)
+
+    fun showSuccess(text: String, extra: Array<out Any?>)
+
+    fun showFail(text: String, extra: Array<out Any?>)
 
     fun onDestroy()
 

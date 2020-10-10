@@ -100,13 +100,19 @@ abstract class BaseMvvMDialogFragment<V : ViewDataBinding, VM : BaseDialogViewMo
                 dismissAllowingStateLoss()
             })
         viewModel.getBaseActions().showLoadingAction.observe(binding.lifecycleOwner!!, Observer {
-            showLoading(it.isCancelEnable, it.isBackEnable, it.listener)
+            showLoading(it.isCancelEnable, it.isBackEnable, it.dismissListener, it.extra)
         })
         viewModel.getBaseActions().hideLoadingAction.observe(binding.lifecycleOwner!!, Observer {
             hideLoading()
         })
         viewModel.getBaseActions().showMessageAction.observe(binding.lifecycleOwner!!, Observer {
-            showMessage(it)
+            showMessage(it.text, it.extra)
+        })
+        viewModel.getBaseActions().showSuccessAction.observe(binding.lifecycleOwner!!, Observer {
+            showSuccess(it.text, it.extra)
+        })
+        viewModel.getBaseActions().showFailAction.observe(binding.lifecycleOwner!!, Observer {
+            showFail(it.text, it.extra)
         })
     }
 

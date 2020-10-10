@@ -17,9 +17,9 @@ class Demo2ViewModel(application: Application) : BaseActivityViewModel<BaseModel
     var showCustomDialogAction = MutableLiveData<Int>()
 
     fun onClickBtn1(view: View) {
-        showLoading(false, true) {
+        showLoading(false, true, {
             showMessage("加载框关闭了")
-        }
+        })
     }
 
     fun onClickBtn2(view: View) {
