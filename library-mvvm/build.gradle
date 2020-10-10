@@ -42,11 +42,11 @@ android {
 dependencies {
     def dependencies = rootProject.ext.dependencies
     api fileTree(include: ['*.jar'], dir: 'libs')
-    implementation dependencies.appcompat
-    implementation dependencies.recyclerview
-    implementation dependencies.barlibrary
-    implementation dependencies.backgroundlibrary
-    implementation dependencies.blankj_utilcode
+    compileOnly dependencies.appcompat
+    compileOnly dependencies.recyclerview
+    compileOnly dependencies.barlibrary
+    compileOnly dependencies.backgroundlibrary
+    compileOnly dependencies.blankj_utilcode
     api dependencies.fragmentation_core
     api dependencies.fragmentation_swipeback
     implementation dependencies.lifecycle_extensions

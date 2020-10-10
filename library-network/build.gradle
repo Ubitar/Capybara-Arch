@@ -44,15 +44,15 @@ android {
 
 dependencies {
     def dependencies = rootProject.ext.dependencies
-    implementation dependencies.rxjava2
-    implementation dependencies.rxandroid2
-    implementation dependencies.retrofit2
-    implementation dependencies.retrofit2rxjava
-    implementation dependencies.retrofit2_converter_gson
-    implementation dependencies.gson
-    implementation dependencies.klog
-    implementation dependencies.autodisposeandroid
-    implementation dependencies.autodisposearchcomponents
+    compileOnly dependencies.rxjava2
+    compileOnly dependencies.rxandroid2
+    compileOnly dependencies.retrofit2
+    compileOnly dependencies.retrofit2rxjava
+    compileOnly dependencies.retrofit2_converter_gson
+    compileOnly dependencies.gson
+    compileOnly dependencies.klog
+    compileOnly dependencies.autodisposeandroid
+    compileOnly dependencies.autodisposearchcomponents
     testImplementation dependencies.junit
     androidTestImplementation dependencies.test_runner
     androidTestImplementation dependencies.test_espresso_core
