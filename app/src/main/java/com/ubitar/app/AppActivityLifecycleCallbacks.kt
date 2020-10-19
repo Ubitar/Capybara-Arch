@@ -15,8 +15,8 @@ class AppActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityCreated(activity: Activity, p1: Bundle?) {
         BackgroundLibrary.inject(activity)
-//        if (activity is AppCompatActivity)
-//            activity.supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, true)
+        if (activity is AppCompatActivity)
+            activity.supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, false)
     }
 
     override fun onActivityStarted(activity: Activity) {
@@ -36,7 +36,7 @@ class AppActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityDestroyed(activity: Activity) {
-//        if (activity is AppCompatActivity)
-//            activity.supportFragmentManager.unregisterFragmentLifecycleCallbacks(fragmentLifecycleCallbacks)
+        if (activity is AppCompatActivity)
+            activity.supportFragmentManager.unregisterFragmentLifecycleCallbacks(fragmentLifecycleCallbacks)
     }
 }
