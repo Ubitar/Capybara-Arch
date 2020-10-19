@@ -6,7 +6,7 @@ import com.ubitar.capybara.network.compose.ResponseCompose;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
-import lgforgone.com.network.interceptor.LoggerInterceptor;
+import com.ubitar.capybara.network.interceptor.LoggerInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

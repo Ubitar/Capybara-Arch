@@ -64,8 +64,7 @@ dependencies {
     implementation dependencies.retrofit2rxjava
     implementation dependencies.retrofit2_converter_gson
     implementation dependencies.gson
-    implementation dependencies.autodisposeandroid
-    implementation dependencies.autodisposearchcomponents
+    implementation dependencies.klog
     implementation dependencies.blankj_utilcode
     implementation dependencies.base_recycler_view_adapter_helper
     implementation dependencies.xpopup
@@ -73,12 +72,12 @@ dependencies {
     implementation dependencies.lifecycle_extensions
     implementation dependencies.viewpager2
     implementation dependencies.live_event_bus
-    implementation dependencies.archcapybara_mvvm
-    implementation dependencies.archcapybara_network
+//    implementation dependencies.archcapybara_mvvm
+//    implementation dependencies.archcapybara_network
     testImplementation dependencies.junit
     androidTestImplementation dependencies.test_runner
     androidTestImplementation dependencies.test_espresso_core
 
-//    implementation project(":library-mvvm")
-//    implementation project(":library-network")
+    implementation project(":library-mvvm")
+    implementation project(":library-network")
 }

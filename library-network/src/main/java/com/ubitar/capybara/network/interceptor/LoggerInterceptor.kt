@@ -1,4 +1,4 @@
-package lgforgone.com.network.interceptor
+package com.ubitar.capybara.network.interceptor
 
 import com.socks.library.KLog
 import okhttp3.*

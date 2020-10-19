@@ -51,8 +51,6 @@ dependencies {
     compileOnly dependencies.retrofit2_converter_gson
     compileOnly dependencies.gson
     compileOnly dependencies.klog
-    compileOnly dependencies.autodisposeandroid
-    compileOnly dependencies.autodisposearchcomponents
     testImplementation dependencies.junit
     androidTestImplementation dependencies.test_runner
     androidTestImplementation dependencies.test_espresso_core
