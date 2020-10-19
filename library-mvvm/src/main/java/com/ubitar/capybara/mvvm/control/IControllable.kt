@@ -15,7 +15,7 @@ interface IControllable {
 
     fun hideLoading()
 
-    fun showMessage(text: String, vararg extra: Any?)
+    fun showMessage(text: String,extra: Array<out Any?>)
 
     fun showSuccess(text: String, extra: Array<out Any?>)
 

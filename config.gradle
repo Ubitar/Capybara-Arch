@@ -35,7 +35,7 @@ ext {
             "lifecycle_extensions"             : "androidx.lifecycle:lifecycle-extensions:2.2.0",
             "viewpager2"                       : 'androidx.viewpager2:viewpager2:1.0.0',
             "live_event_bus"                   : 'com.jeremyliao:live-event-bus-x:1.7.2',
-            "archcapybara_mvvm"                : 'com.ubitar.capybara:archcapybara-mvvm:1.0.0',
+            "archcapybara_mvvm"                : 'com.ubitar.capybara:archcapybara-mvvm:1.0.1',
             "archcapybara_network"             : 'com.ubitar.capybara:archcapybara-network:1.0.0',
             "junit"                            : "junit:junit:4.12",
             "test_runner"                      : "androidx.test:runner:1.2.0",
