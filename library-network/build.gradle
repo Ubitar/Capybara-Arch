@@ -50,7 +50,6 @@ dependencies {
     compileOnly dependencies.retrofit2rxjava
     compileOnly dependencies.retrofit2_converter_gson
     compileOnly dependencies.gson
-    compileOnly dependencies.klog
     testImplementation dependencies.junit
     androidTestImplementation dependencies.test_runner
     androidTestImplementation dependencies.test_espresso_core

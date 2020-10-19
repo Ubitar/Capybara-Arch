@@ -23,7 +23,6 @@ ext {
             'rxandroid2'                       : "io.reactivex.rxjava2:rxandroid:2.1.0",
             'retrofit2'                        : 'com.squareup.retrofit2:retrofit:2.5.0',
             'retrofit2rxjava'                  : 'com.squareup.retrofit2:adapter-rxjava2:2.5.0',
-            "klog"                             : 'com.github.zhaokaiqiang.klog:library:1.6.0',
             "base_recycler_view_adapter_helper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.2",
             "blankj_utilcode"                  : "com.blankj:utilcode:1.28.0",
             "fragmentation_core"               : 'me.ubitar:fragmentationx-core:1.0.0',

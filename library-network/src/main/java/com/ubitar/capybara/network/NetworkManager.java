@@ -6,7 +6,6 @@ import com.ubitar.capybara.network.compose.ResponseCompose;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
-import com.ubitar.capybara.network.interceptor.LoggerInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -38,7 +37,6 @@ public class NetworkManager {
                 .readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS);
         onCreateOkHttp.onCreate(builder);
-        builder.addInterceptor(new LoggerInterceptor());
         OkHttpClient client = builder.build();
         retrofit = new Retrofit.Builder()
                 .client(client)

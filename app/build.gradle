@@ -64,7 +64,6 @@ dependencies {
     implementation dependencies.retrofit2rxjava
     implementation dependencies.retrofit2_converter_gson
     implementation dependencies.gson
-    implementation dependencies.klog
     implementation dependencies.blankj_utilcode
     implementation dependencies.base_recycler_view_adapter_helper
     implementation dependencies.xpopup
