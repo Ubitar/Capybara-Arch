@@ -1,9 +1,13 @@
 package com.ubitar.app
 
+import android.app.Activity
 import android.app.Application
+import android.os.Bundle
+import com.blankj.utilcode.util.ActivityUtils
 
 import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.Utils
+import com.noober.background.BackgroundLibrary
 import com.ubitar.capybara.mvvm.control.ControlConfig
 import com.ubitar.capybara.mvvm.control.ControlProvider
 import com.ubitar.capybara.network.NetworkManager
@@ -35,6 +39,31 @@ class App : Application() {
             .install()
 
         ControlProvider.setGlobalConfig(ControlConfig().setGlobalControl(AppControllable()))
+
+        registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+            override fun onActivityCreated(p0: Activity, p1: Bundle?) {
+                BackgroundLibrary.inject(p0)
+            }
+
+            override fun onActivityStarted(p0: Activity) {
+            }
+
+            override fun onActivityResumed(p0: Activity) {
+            }
+
+            override fun onActivityPaused(p0: Activity) {
+            }
+
+            override fun onActivityStopped(p0: Activity) {
+            }
+
+            override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
+            }
+
+            override fun onActivityDestroyed(p0: Activity) {
+            }
+
+        })
     }
 
 

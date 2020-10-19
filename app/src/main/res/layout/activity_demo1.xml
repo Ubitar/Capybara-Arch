@@ -22,7 +22,7 @@
             android:id="@+id/viewStatusBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        SimpleTextChangeListener
+
         <Button
             android:id="@+id/btn1"
             android:layout_width="match_parent"

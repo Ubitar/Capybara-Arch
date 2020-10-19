@@ -44,8 +44,6 @@ dependencies {
     implementation dependencies.appcompat
     compileOnly dependencies.recyclerview
     compileOnly dependencies.barlibrary
-    compileOnly dependencies.backgroundlibrary
-    compileOnly dependencies.blankj_utilcode
     api dependencies.fragmentation_core
     api dependencies.fragmentation_swipeback
     implementation dependencies.lifecycle_extensions

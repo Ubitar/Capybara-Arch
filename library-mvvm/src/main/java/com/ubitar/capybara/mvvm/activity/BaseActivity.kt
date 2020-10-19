@@ -8,12 +8,10 @@ import android.view.WindowManager
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-import com.blankj.utilcode.util.KeyboardUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.ubitar.capybara.mvvm.common.ActivityManager
 import com.ubitar.capybara.mvvm.control.ControlProvider
 import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
-import com.noober.background.BackgroundLibrary
 import com.ubitar.capybara.mvvm.R
 
 abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> :
@@ -22,7 +20,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     protected lateinit var controllerProvider: ControlProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        BackgroundLibrary.inject(this)
         super.onCreate(savedInstanceState)
         ActivityManager.getManager().addActivity(this)
         getImmersionBar()?.init()
@@ -53,7 +50,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     }
 
     override fun finish() {
-        KeyboardUtils.hideSoftInput(this)
         super.finish()
         val enterAnim = intent.getIntExtra(CUSTOM_POP_ENTER_TRANSITION_ANIMATION_TAG, R.anim.h_fragment_pop_enter)
         val exitAnim = intent.getIntExtra(CUSTOM_EXIT_TRANSITION_ANIMATION_TAG, R.anim.h_fragment_exit)
