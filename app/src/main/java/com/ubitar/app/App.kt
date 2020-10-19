@@ -26,10 +26,14 @@ class App : Application() {
         Utils.init(this)
 
         NetworkManager.init(Host.DEFAULT_HOST, {
+            //此处可以添加Logger拦截器
+        }, {
+            //自定义统一处理网络请求码错误
+            //返回null表示不使用自定义处理
             null
         }, {
-            null
-        }, {
+            //自定义处理网络接口返回值
+            //返回null表示不使用自定义处理
             null
         })
 
