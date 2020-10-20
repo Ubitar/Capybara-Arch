@@ -1,14 +1,8 @@
 package com.ubitar.app
 
-import android.app.Activity
 import android.app.Application
-import android.os.Bundle
-import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.KeyboardUtils
-
 import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.Utils
-import com.noober.background.BackgroundLibrary
 import com.ubitar.capybara.mvvm.control.ControlConfig
 import com.ubitar.capybara.mvvm.control.ControlProvider
 import com.ubitar.capybara.network.NetworkManager
@@ -38,10 +32,11 @@ class App : Application() {
             null
         })
 
-        Fragmentation.builder()
-            .stackViewMode(Fragmentation.SHAKE)
-            .debug(BuildConfig.DEBUG)
-            .install()
+        //初始化Fragmentation
+//        Fragmentation.builder()
+//            .stackViewMode(Fragmentation.SHAKE)
+//            .debug(BuildConfig.DEBUG)
+//            .install()
 
         ControlProvider.setGlobalConfig(ControlConfig().setGlobalControl(AppControllable()))
 
