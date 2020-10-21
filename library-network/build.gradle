@@ -60,6 +60,6 @@ dependencies {
 //    groupId = "com.ubitar.capybara"
 //    artifactId = 'archcapybara-network'
 //    publishVersion = "1.0.2"
-//    desc = "a network arch in archcapybara"
-//    website = "https://github.com/Ubitar/ArchCapybara"
+//    desc = "a network arch in capybaraarch"
+//    website = "https://github.com/Ubitar/CapybaraArch"
 //}

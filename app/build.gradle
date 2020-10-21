@@ -11,7 +11,7 @@ android {
     compileSdkVersion rootProject.ext.versions.compileSdkVersion
     buildToolsVersion rootProject.ext.versions.buildToolsVersion
     defaultConfig {
-        applicationId "com.example.archcapybara"
+        applicationId "com.example.capybaraarch"
         minSdkVersion versions.minSdkVersion
         targetSdkVersion versions.targetSdkVersion
         versionCode versions.versionCode
@@ -35,7 +35,7 @@ android {
         }
         android.applicationVariants.all { variant ->
             variant.outputs.all {
-                outputFileName = "ArchCapybara${defaultConfig.versionName}_release.apk"
+                outputFileName = "CapybaraArch${defaultConfig.versionName}_release.apk"
             }
         }
     }
