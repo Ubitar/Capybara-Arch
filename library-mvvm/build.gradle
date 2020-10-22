@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: "kotlin-android"
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     dataBinding {
@@ -41,8 +41,7 @@ android {
 }
 dependencies {
     def dependencies = rootProject.ext.dependencies
-    implementation dependencies.appcompat
-    compileOnly dependencies.recyclerview
+    compileOnly dependencies.appcompat
     compileOnly dependencies.barlibrary
     api dependencies.fragmentation_core
     api dependencies.fragmentation_swipeback
@@ -53,11 +52,11 @@ dependencies {
 
 }
 
-//publish {
-//    userOrg = "ubitar"
-//    groupId = "com.ubitar.capybara"
-//    artifactId = 'archcapybara-mvvm'
-//    publishVersion = "1.0.2"
-//    desc = "a mvvm arch in capybaraarch"
-//    website = "https://github.com/Ubitar/CapybaraArch"
-//}
+publish {
+    userOrg = "ubitar"
+    groupId = "com.ubitar.capybara"
+    artifactId = 'archcapybara-mvvm'
+    publishVersion = "1.0.3"
+    desc = "a mvvm arch in capybaraarch"
+    website = "https://github.com/Ubitar/CapybaraArch"
+}

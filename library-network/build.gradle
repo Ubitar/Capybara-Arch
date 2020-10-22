@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: "kotlin-android"
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     def versions = rootProject.ext.versions
@@ -55,11 +55,11 @@ dependencies {
     androidTestImplementation dependencies.test_espresso_core
 }
 
-//publish {
-//    userOrg = "ubitar"
-//    groupId = "com.ubitar.capybara"
-//    artifactId = 'archcapybara-network'
-//    publishVersion = "1.0.2"
-//    desc = "a network arch in capybaraarch"
-//    website = "https://github.com/Ubitar/CapybaraArch"
-//}
+publish {
+    userOrg = "ubitar"
+    groupId = "com.ubitar.capybara"
+    artifactId = 'archcapybara-network'
+    publishVersion = "1.0.3"
+    desc = "a network arch in capybaraarch"
+    website = "https://github.com/Ubitar/CapybaraArch"
+}

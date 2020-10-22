@@ -1,6 +1,5 @@
 package com.ubitar.capybara.mvvm.dialog
 
-import android.app.Dialog
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -13,9 +12,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ubitar.capybara.mvvm.control.IController
 import com.ubitar.capybara.mvvm.IView
-import com.ubitar.capybara.mvvm.R
+import com.ubitar.capybara.mvvm.control.IController
 import com.ubitar.capybara.mvvm.vm.base.BaseDialogViewModel
 import java.lang.reflect.ParameterizedType
 
@@ -36,10 +34,6 @@ abstract class BaseMvvMDialogFragment<V : ViewDataBinding, VM : BaseDialogViewMo
         val content = LinearLayout(context)
         inflater.inflate(getLayoutId(inflater,savedInstanceState), content, true)
         return content
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return  Dialog(context!!, R.style.BaseDialogTheme)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
