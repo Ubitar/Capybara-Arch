@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
 import androidx.databinding.ViewDataBinding
+import com.ubitar.capybara.mvvm.R
 
 import com.ubitar.capybara.mvvm.control.ControlProvider
 import com.ubitar.capybara.mvvm.vm.base.BaseDialogViewModel
@@ -52,7 +53,7 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
+        val dialog = Dialog(context!!, R.style.BaseDialogTheme)
         if (!isDimAmountEnable())
             dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         dialog.window?.setDimAmount(getDimAmount())
@@ -140,15 +141,15 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
 
     }
 
-    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?,  extra: Array<out Any?>) {
+    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
-    override fun showSuccess(text: String,  extra: Array<out Any?>) {
+    override fun showSuccess(text: String, extra: Array<out Any?>) {
         controllerProvider.get().showSuccess(text, extra)
     }
 
-    override fun showFail(text: String,  extra: Array<out Any?>) {
+    override fun showFail(text: String, extra: Array<out Any?>) {
         controllerProvider.get().showFail(text, extra)
     }
 
