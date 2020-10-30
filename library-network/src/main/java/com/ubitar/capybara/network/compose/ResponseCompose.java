@@ -4,7 +4,7 @@ package com.ubitar.capybara.network.compose;
 import com.ubitar.capybara.network.ApiException;
 import com.ubitar.capybara.network.NetExceptionParser;
 import com.ubitar.capybara.network.NetworkError;
-import com.ubitar.capybara.network.HostCreator;
+import com.ubitar.capybara.network.Server;
 import com.ubitar.capybara.network.bean.BaseResponse;
 
 import io.reactivex.Flowable;
@@ -13,7 +13,7 @@ import io.reactivex.functions.Function;
 
 public class ResponseCompose {
 
-    public static HostCreator.OnGlobalParser onParser;
+    public static Server.OnGlobalParser onParser;
 
     public static <T> FlowableTransformer<BaseResponse<T>, BaseResponse<T>> parseResult() {
         return upstream -> upstream

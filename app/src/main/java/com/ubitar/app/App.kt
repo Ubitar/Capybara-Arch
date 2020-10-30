@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.Utils
 import com.ubitar.capybara.mvvm.control.ControlConfig
 import com.ubitar.capybara.mvvm.control.ControlProvider
-import com.ubitar.capybara.network.HostCreator
+import com.ubitar.capybara.network.Server
 import com.ubitar.capybara.network.NetworkManager
 
 class App : Application() {
@@ -21,7 +21,7 @@ class App : Application() {
         Utils.init(this)
 
         NetworkManager.getInstance()
-            .addHostCreator(NetworkTag.TAG1, HostCreator.create(Host.DEFAULT_HOST_URL, {
+            .addServer(NetworkTag.TAG1, Server.create(Host.DEFAULT_HOST_URL, {
                 //此处可以添加Logger拦截器
             }, {
                 //自定义统一处理网络请求码错误

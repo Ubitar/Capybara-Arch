@@ -4,22 +4,22 @@ import java.util.HashMap;
 
 public class NetworkManager {
 
-    private HashMap<String, HostCreator> creators = new HashMap();
+    private HashMap<String, Server> servers = new HashMap();
     private static NetworkManager mInstance;
 
     private NetworkManager() {
 
     }
 
-    public NetworkManager addHostCreator(String tag, HostCreator creator) {
-        creators.put(tag, creator);
+    public NetworkManager addServer(String tag, Server creator) {
+        servers.put(tag, creator);
         return this;
     }
 
-    public <T> T createService(String tag, Class<T> c) {
-        if (!creators.containsKey(tag)) throw new RuntimeException("please add host");
-        HostCreator creator=creators.get(tag);
-        return creator.createService(c);
+    public <T> T createRepository(String tag, Class<T> service) {
+        if (!servers.containsKey(tag)) throw new RuntimeException("please add server host");
+        Server creator= servers.get(tag);
+        return creator.createService(service);
     }
 
     public static NetworkManager getInstance() {

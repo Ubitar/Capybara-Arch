@@ -8,7 +8,7 @@ import com.ubitar.capybara.network.repository.BaseRepository
 import io.reactivex.Flowable
 
 /**
- * XXModel类中的方法主要是对网络请求做部分准备
+ * XXRepository类中的方法主要是对网络请求做部分准备
  *
  *
  * 例如：你传入了一个Bean类，希望通过该Model类进行对类的拆解，取出Bean类中相应的值放入Api接口中作为参数
@@ -23,7 +23,7 @@ class Demo4Repository : BaseRepository<Demo4Api>() {
         return Demo4Api::class.java
     }
 
-    override fun getCreatorTag(): String {
+    override fun getServerTag(): String {
         return NetworkTag.TAG1
     }
 

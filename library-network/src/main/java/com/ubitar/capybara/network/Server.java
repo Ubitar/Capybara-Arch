@@ -11,18 +11,18 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HostCreator {
+public class Server {
 
     public static int READ_TIME_OUT = 15;
     public static int CONNECT_TIME_OUT = 15;
 
     private static Retrofit retrofit;
 
-    public static HostCreator create(String host, OnCreateOkHttp onCreateOkHttp, OnGlobalException onException, OnGlobalParser onParser) {
-        return new HostCreator(host,onCreateOkHttp,onException,onParser);
+    public static Server create(String host, OnCreateOkHttp onCreateOkHttp, OnGlobalException onException, OnGlobalParser onParser) {
+        return new Server(host,onCreateOkHttp,onException,onParser);
     }
 
-    private HostCreator(String host, OnCreateOkHttp onCreateOkHttp, OnGlobalException onException, OnGlobalParser onParser) {
+    private Server(String host, OnCreateOkHttp onCreateOkHttp, OnGlobalException onException, OnGlobalParser onParser) {
         NetExceptionParser.onException = onException;
         ResponseCompose.onParser = onParser;
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
