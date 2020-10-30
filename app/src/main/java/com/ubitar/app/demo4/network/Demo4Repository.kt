@@ -1,6 +1,7 @@
 package com.ubitar.app.demo4.network
 
 
+import com.ubitar.app.NetworkTag
 import com.ubitar.app.demo4.network.bean.UserBean
 import com.ubitar.capybara.network.bean.BaseResponse
 import com.ubitar.capybara.network.repository.BaseRepository
@@ -22,6 +23,10 @@ class Demo4Repository : BaseRepository<Demo4Api>() {
         return Demo4Api::class.java
     }
 
+    override fun getCreatorTag(): String {
+        return NetworkTag.TAG1
+    }
+
     fun login(account: String, password: String): Flowable<BaseResponse<UserBean>> {
         return repository.login(account, password)
     }
@@ -29,5 +34,6 @@ class Demo4Repository : BaseRepository<Demo4Api>() {
     fun logout(token: String): Flowable<BaseResponse<Any>> {
         return repository.logout(token)
     }
+
 
 }

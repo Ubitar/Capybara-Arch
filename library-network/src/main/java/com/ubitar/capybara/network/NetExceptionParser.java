@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 
 public class NetExceptionParser {
 
-    public static NetworkManager.OnGlobalException onException;
+    public static HostCreator.OnGlobalException onException;
 
     public static ApiException parse(Throwable e) {
         ApiException exception = null;

@@ -7,9 +7,11 @@ abstract class BaseRepository<T> {
     protected var repository: T
 
     init {
-        repository = NetworkManager.getRequest(getApi())
+        repository = NetworkManager.getInstance().createService(getCreatorTag(), getApi())
     }
 
-    protected abstract fun  getApi(): Class<T>
+    protected abstract fun getApi(): Class<T>
+
+    protected abstract fun getCreatorTag(): String
 
 }
