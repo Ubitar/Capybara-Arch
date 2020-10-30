@@ -1,6 +1,7 @@
 package com.ubitar.app.demo4.network.bean
 
 import android.os.Parcelable
+import com.ubitar.capybara.network.bean.IBaseResponse
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -18,4 +19,4 @@ data class UserBean(
     var province: String,
     var city: String,
     var buildTime: Long
-) : Parcelable
+) : Parcelable, IBaseResponse

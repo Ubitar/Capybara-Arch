@@ -1,6 +1,6 @@
 package com.ubitar.capybara.network;
 
-import com.ubitar.capybara.network.bean.BaseResponse;
+import com.ubitar.capybara.network.bean.IBaseResponse;
 import com.ubitar.capybara.network.compose.ResponseCompose;
 
 import java.util.concurrent.TimeUnit;
@@ -52,7 +52,7 @@ public class Server {
         ApiException onException(Throwable e);
     }
 
-    public interface OnGlobalParser<T> {
-        Flowable<BaseResponse<T>> onParse(BaseResponse<T> tResponse);
+    public interface OnGlobalParser {
+        Flowable<IBaseResponse> onParse(IBaseResponse tResponse);
     }
 }

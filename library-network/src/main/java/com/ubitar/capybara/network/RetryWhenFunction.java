@@ -29,7 +29,7 @@ public class RetryWhenFunction implements Function<Flowable<? extends Throwable>
             public Flowable<?> apply(Throwable throwable) throws Exception {
                 if (throwable instanceof ApiException) {
                     ApiException exception = (ApiException) throwable;
-                    if (exception.getCode() == NetworkError.NETWORK_ERROR) {
+                    if (exception.getCode() == HttpError.NETWORK_ERROR) {
                         if (currentTime++ < maxRetryCount) {
                             return Flowable.just(currentTime).delay(delayTime, TimeUnit.MILLISECONDS);
                         }

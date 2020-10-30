@@ -22,14 +22,17 @@ class App : Application() {
 
         NetworkManager.getInstance()
             .addServer(NetworkTag.TAG1, Server.create(Host.DEFAULT_HOST_URL, {
-                //此处可以添加Logger拦截器
+                //此处可以添加Logger拦截器或修改响应时间
             }, {
                 //自定义统一处理网络请求码错误
-                //返回null表示不使用自定义处理
+                //返回null表示不添加自定义处理规则
+                //return ApiException()
                 null
             }, {
                 //自定义处理网络接口返回值
-                //返回null表示不使用自定义处理
+                //返回null表示不添加自定义处理规则
+                //  it.setValue(xx)
+                //return Flowable.just(it)
                 null
             }))
 

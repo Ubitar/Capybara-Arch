@@ -20,15 +20,15 @@ public class NetExceptionParser {
         if (exception != null) {
             return exception;
         } else if (e instanceof JSONException || e instanceof ParseException) {
-            return new ApiException(NetworkError.PARSE_ERROR,  "数据解析错误");
+            return new ApiException(HttpError.PARSE_ERROR,  "数据解析错误");
         } else if (e instanceof ConnectException) {
-            return new ApiException(NetworkError.NETWORK_ERROR,  "无法连接至服务器");
+            return new ApiException(HttpError.NETWORK_ERROR,  "无法连接至服务器");
         } else if (e instanceof UnknownHostException || e instanceof SocketTimeoutException) {
-            return new ApiException(NetworkError.NETWORK_ERROR, "无法连接至服务器");
+            return new ApiException(HttpError.NETWORK_ERROR, "无法连接至服务器");
         } else if (e instanceof ApiException) {
             return (ApiException) e;
         } else {
-            return new ApiException(NetworkError.UNKNOWN, "未知错误");
+            return new ApiException(HttpError.UNKNOWN, "未知错误");
         }
     }
 }
