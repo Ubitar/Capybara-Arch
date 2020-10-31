@@ -1,9 +1,7 @@
 package com.ubitar.capybara.network.compose;
 
 
-import com.ubitar.capybara.network.ApiException;
 import com.ubitar.capybara.network.NetExceptionParser;
-import com.ubitar.capybara.network.HttpError;
 import com.ubitar.capybara.network.Server;
 import com.ubitar.capybara.network.bean.IBaseResponse;
 
@@ -15,10 +13,11 @@ public class ResponseCompose {
 
     public static Server.OnGlobalParser onParser;
 
-    public static FlowableTransformer<IBaseResponse, IBaseResponse> parseResult() {
+
+    public static <T> FlowableTransformer<IBaseResponse, T> parseResult() {
         return upstream -> upstream
-                .onErrorResumeNext(new ErrorResumeFunction())
-                .flatMap(new ResponseFunction());
+                .onErrorResumeNext(new ResponseCompose.ErrorResumeFunction())
+                .flatMap(new ResponseCompose.ResponseFunction());
     }
 
     /**
@@ -40,10 +39,10 @@ public class ResponseCompose {
      *
      * @param
      */
-    private static class ResponseFunction implements Function<IBaseResponse, Flowable<IBaseResponse>> {
+    private static class ResponseFunction<T extends IBaseResponse> implements Function<IBaseResponse, Flowable<T>> {
 
         @Override
-        public Flowable<IBaseResponse> apply(IBaseResponse tResponse) throws Exception {
+        public Flowable<T> apply(IBaseResponse tResponse) throws Exception {
             Flowable flowable = null;
             if (onParser != null) {
                 flowable = onParser.onParse(tResponse);
@@ -51,7 +50,7 @@ public class ResponseCompose {
             if (flowable != null) {
                 return flowable;
             } else {
-                return Flowable.just(tResponse);
+                return (Flowable<T>) Flowable.just(tResponse);
             }
         }
     }
