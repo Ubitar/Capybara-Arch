@@ -1,4 +1,4 @@
-package com.ubitar.app
+package com.ubitar.app.common
 
 import com.blankj.utilcode.util.ToastUtils
 import com.ubitar.app.demo6.myxpopup.LoadingPopup

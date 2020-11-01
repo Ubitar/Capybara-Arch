@@ -1,4 +1,4 @@
-package com.ubitar.app
+package com.ubitar.app.common
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

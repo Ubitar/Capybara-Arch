@@ -1,4 +1,4 @@
-package com.ubitar.app
+package com.ubitar.app.common
 
 object NetworkTag {
 

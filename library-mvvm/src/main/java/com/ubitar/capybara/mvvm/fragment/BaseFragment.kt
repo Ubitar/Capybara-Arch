@@ -8,7 +8,6 @@ import android.view.WindowManager
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 
-import com.gyf.immersionbar.ImmersionBar
 import com.ubitar.capybara.mvvm.R
 import com.ubitar.capybara.mvvm.control.ControlProvider
 
@@ -61,7 +60,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
 
     override fun onResume() {
         super.onResume()
-        getImmersionBar()?.init()
     }
 
     override fun onStop() {
@@ -70,7 +68,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
 
     override fun onSupportVisible() {
         super.onSupportVisible()
-        getImmersionBar()?.init()
     }
 
     override fun onSupportInvisible() {
@@ -130,15 +127,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
 
     override fun showMessage(text: String,  extra: Array<out Any?>) {
         controllerProvider.get().showMessage(text, extra)
-    }
-
-    /** 设置状态栏效果  */
-    open fun getImmersionBar(): ImmersionBar? {
-        return ImmersionBar.with(this)
-            .statusBarDarkFont(true)
-            .keyboardEnable(true, WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-            .navigationBarDarkIcon(true)
-            .navigationBarColor(android.R.color.white)
     }
 
     /** 是否再加载完动画后才开始加载数据，这样是为了防止卡顿 ，默认：加载动画的同时调用 initData() */

@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.ubitar.app.BR
 import com.ubitar.app.R
+import com.ubitar.app.common.IImmersionbar
 import com.ubitar.app.databinding.ActivityDemo2Binding
 import com.ubitar.app.demo2.dialog.Dem2Dialog
 import com.ubitar.app.demo2.vm.Demo2ViewModel
@@ -16,7 +17,7 @@ import com.ubitar.capybara.mvvm.control.Control
 
 
 @Control(type = Demo2Controllable::class) //用来设置BaseActivity中showLoading和showMessage的行为
-class Demo2Activity : BaseActivity<ActivityDemo2Binding, Demo2ViewModel>() {
+class Demo2Activity : BaseActivity<ActivityDemo2Binding, Demo2ViewModel>() , IImmersionbar {
 
     override fun getLayoutId(inflater: LayoutInflater, savedInstanceState: Bundle?): Int =
         R.layout.activity_demo2

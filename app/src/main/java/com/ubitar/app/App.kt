@@ -3,6 +3,10 @@ package com.ubitar.app
 import android.app.Application
 import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.Utils
+import com.ubitar.app.common.AppActivityLifecycleCallbacks
+import com.ubitar.app.common.AppControllable
+import com.ubitar.app.common.Host
+import com.ubitar.app.common.NetworkTag
 import com.ubitar.capybara.mvvm.control.ControlConfig
 import com.ubitar.capybara.mvvm.control.ControlProvider
 import com.ubitar.capybara.network.Server

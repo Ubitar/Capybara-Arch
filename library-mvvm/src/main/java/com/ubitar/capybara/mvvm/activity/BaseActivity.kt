@@ -8,7 +8,6 @@ import android.view.WindowManager
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-import com.gyf.immersionbar.ImmersionBar
 import com.ubitar.capybara.mvvm.common.ActivityManager
 import com.ubitar.capybara.mvvm.control.ControlProvider
 import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
@@ -22,7 +21,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityManager.getManager().addActivity(this)
-        getImmersionBar()?.init()
         controllerProvider = ControlProvider(this)
         initParams()
         initViewModelParams()
@@ -110,15 +108,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
 
     fun getActivity(): BaseActivity<V, VM> {
         return this
-    }
-
-    /** 设置状态栏效果  */
-    open fun getImmersionBar(): ImmersionBar? {
-        return ImmersionBar.with(this)
-            .statusBarDarkFont(true)
-            .keyboardEnable(true, WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-            .navigationBarDarkIcon(true)
-            .navigationBarColor(android.R.color.white)
     }
 
     /** 初始化页面参数  */

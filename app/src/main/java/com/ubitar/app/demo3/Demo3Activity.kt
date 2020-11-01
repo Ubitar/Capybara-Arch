@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.BarUtils
 import com.ubitar.app.BR
 import com.ubitar.app.R
+import com.ubitar.app.common.IImmersionbar
 import com.ubitar.app.databinding.ActivityDemo3Binding
 import com.ubitar.app.demo3.vm.Demo3ViewModel
 
 import com.ubitar.capybara.mvvm.activity.BaseActivity
 
 
-class Demo3Activity : BaseActivity<ActivityDemo3Binding, Demo3ViewModel>() {
+class Demo3Activity : BaseActivity<ActivityDemo3Binding, Demo3ViewModel>() , IImmersionbar {
 
     override fun getLayoutId(inflater: LayoutInflater, savedInstanceState: Bundle?): Int =
         R.layout.activity_demo3

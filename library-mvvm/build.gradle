@@ -42,7 +42,6 @@ android {
 dependencies {
     def dependencies = rootProject.ext.dependencies
     compileOnly dependencies.appcompat
-    compileOnly dependencies.barlibrary
     api dependencies.fragmentation_core
     api dependencies.fragmentation_swipeback
     implementation dependencies.lifecycle_extensions
@@ -56,7 +55,7 @@ publish {
     userOrg = "ubitar"
     groupId = "com.ubitar.capybara"
     artifactId = 'archcapybara-mvvm'
-    publishVersion = "1.0.6"
+    publishVersion = "1.0.7"
     desc = "a mvvm arch in capybaraarch"
     website = "https://github.com/Ubitar/CapybaraArch"
 }

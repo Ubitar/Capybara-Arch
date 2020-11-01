@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import com.blankj.utilcode.util.BarUtils
 import com.ubitar.app.BR
 import com.ubitar.app.R
+import com.ubitar.app.common.IImmersionbar
 import com.ubitar.app.databinding.ActivityMainBinding
 import com.ubitar.capybara.mvvm.activity.BaseActivity
 
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), IImmersionbar {
 
     override fun getLayoutId(inflater: LayoutInflater, savedInstanceState: Bundle?): Int =
         R.layout.activity_main

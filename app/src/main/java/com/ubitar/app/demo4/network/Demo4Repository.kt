@@ -1,7 +1,7 @@
 package com.ubitar.app.demo4.network
 
 
-import com.ubitar.app.NetworkTag
+import com.ubitar.app.common.NetworkTag
 import com.ubitar.app.demo4.network.bean.UserBean
 import com.ubitar.capybara.network.bean.IBaseResponse
 import com.ubitar.capybara.network.repository.BaseRepository
