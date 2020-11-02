@@ -15,7 +15,7 @@ public class Server {
     public static int READ_TIME_OUT = 15;
     public static int CONNECT_TIME_OUT = 15;
 
-    private static Retrofit retrofit;
+    private Retrofit retrofit;
 
     public static Server create(String host, OnCreateOkHttp onCreateOkHttp) {
         return new Server(host,onCreateOkHttp);
@@ -45,11 +45,4 @@ public class Server {
         void onCreate(OkHttpClient.Builder builder);
     }
 
-    public interface OnGlobalException {
-        ApiException onException(Throwable e);
-    }
-
-    public interface OnGlobalParser {
-        Flowable<IBaseResponse> onParse(IBaseResponse tResponse);
-    }
 }

@@ -8,12 +8,12 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.functions.Function;
 
-public abstract class ResponseCompose {
+public abstract class AResponseCompose {
 
     public  <T> FlowableTransformer<IBaseResponse, T> parseResult() {
         return upstream -> upstream
-                .onErrorResumeNext(new ResponseCompose.ErrorResumeFunction())
-                .flatMap(new ResponseCompose.ResponseFunction());
+                .onErrorResumeNext(new AResponseCompose.ErrorResumeFunction())
+                .flatMap(new AResponseCompose.ResponseFunction());
     }
 
     /**

@@ -3,7 +3,7 @@ package com.ubitar.app.common
 import android.net.ParseException
 import com.ubitar.capybara.network.ApiException
 import com.ubitar.capybara.network.bean.IBaseResponse
-import com.ubitar.capybara.network.compose.ResponseCompose
+import com.ubitar.capybara.network.compose.AResponseCompose
 import io.reactivex.Flowable
 import org.json.JSONException
 import java.net.ConnectException
@@ -11,7 +11,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 
-class AppResponseCompose : ResponseCompose() {
+class AppResponseCompose : AResponseCompose() {
     override fun onException(e: Throwable?): ApiException {
         //自定义统一处理网络请求码错误
         //返回null表示不添加自定义处理规则
