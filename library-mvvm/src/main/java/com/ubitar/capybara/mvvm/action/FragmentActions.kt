@@ -180,6 +180,7 @@ open class FragmentActions {
         }
         data class ShowMessage(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }
@@ -190,7 +191,6 @@ open class FragmentActions {
         }
     }
 
-
     class ShowSuccessAction : SingleLiveAction<ShowSuccessAction.ShowSuccess>() {
         override fun describe(): String {
             return "IController.showSuccess()"
@@ -198,6 +198,7 @@ open class FragmentActions {
 
         data class ShowSuccess(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }
@@ -209,6 +210,7 @@ open class FragmentActions {
 
         data class ShowFail(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }

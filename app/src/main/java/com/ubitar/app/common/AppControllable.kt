@@ -32,14 +32,14 @@ class AppControllable : IControllable {
         loadingPopup?.get()?.dismiss()
     }
 
-    override fun showMessage(text: String, extra: Array<out Any?>) {
+    override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
         ToastUtils.showShort(text)
     }
 
-    override fun showSuccess(text: String, extra: Array<out Any?>) {
+    override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
     }
 
-    override fun showFail(text: String, extra: Array<out Any?>) {
+    override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
     }
 
     override fun onDestroy() {

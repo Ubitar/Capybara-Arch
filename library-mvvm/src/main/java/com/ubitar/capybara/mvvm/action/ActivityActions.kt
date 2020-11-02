@@ -144,6 +144,7 @@ open class ActivityActions {
         }
         data class ShowMessage(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }
@@ -155,6 +156,7 @@ open class ActivityActions {
 
         data class ShowSuccess(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }
@@ -166,6 +168,7 @@ open class ActivityActions {
 
         data class ShowFail(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }

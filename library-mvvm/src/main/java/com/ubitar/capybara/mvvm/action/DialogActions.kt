@@ -58,6 +58,7 @@ open class DialogActions {
         }
         data class ShowMessage(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }
@@ -69,6 +70,7 @@ open class DialogActions {
 
         data class ShowSuccess(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }
@@ -80,6 +82,7 @@ open class DialogActions {
 
         data class ShowFail(
             val text: String,
+            val onDismissListener:(()->Unit)?=null,
             val extra: Array<out Any?>
         )
     }

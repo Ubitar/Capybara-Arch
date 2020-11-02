@@ -86,20 +86,20 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
         controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
-    override fun showSuccess(text: String,   extra: Array<out Any?>) {
-        controllerProvider.get().showSuccess(text,  extra)
+    override fun showSuccess(text: String,  onDismissListener: (() -> Unit)? ,  extra: Array<out Any?>) {
+        controllerProvider.get().showSuccess(text, onDismissListener, extra)
     }
 
-    override fun showFail(text: String,  extra: Array<out Any?>) {
-        controllerProvider.get().showFail(text,  extra)
+    override fun showFail(text: String,  onDismissListener: (() -> Unit)? , extra: Array<out Any?>) {
+        controllerProvider.get().showFail(text, onDismissListener, extra)
     }
 
     override fun hideLoading() {
         controllerProvider.get().hideLoading()
     }
 
-    override fun showMessage(text: String,  extra: Array<out Any?>) {
-        controllerProvider.get().showMessage(text, extra)
+    override fun showMessage(text: String,  onDismissListener: (() -> Unit)? , extra: Array<out Any?>) {
+        controllerProvider.get().showMessage(text,onDismissListener, extra)
     }
 
     override fun getContext(): Context? {

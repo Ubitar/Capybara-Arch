@@ -109,24 +109,24 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         })
     }
 
-    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?,  extra: Array<out Any?>) {
+    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?,   extra: Array<out Any?>) {
         controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
-    override fun showSuccess(text: String,  extra: Array<out Any?>) {
-        controllerProvider.get().showSuccess(text, extra)
+    override fun showSuccess(text: String,  onDismissListener: (() -> Unit)? ,  extra: Array<out Any?>) {
+        controllerProvider.get().showSuccess(text, onDismissListener, extra)
     }
 
-    override fun showFail(text: String,  extra: Array<out Any?>) {
-        controllerProvider.get().showFail(text, extra)
+    override fun showFail(text: String,  onDismissListener: (() -> Unit)? , extra: Array<out Any?>) {
+        controllerProvider.get().showFail(text, onDismissListener, extra)
     }
 
     override fun hideLoading() {
         controllerProvider.get().hideLoading()
     }
 
-    override fun showMessage(text: String,  extra: Array<out Any?>) {
-        controllerProvider.get().showMessage(text, extra)
+    override fun showMessage(text: String,  onDismissListener: (() -> Unit)? , extra: Array<out Any?>) {
+        controllerProvider.get().showMessage(text,onDismissListener, extra)
     }
 
     /** 是否再加载完动画后才开始加载数据，这样是为了防止卡顿 ，默认：加载动画的同时调用 initData() */

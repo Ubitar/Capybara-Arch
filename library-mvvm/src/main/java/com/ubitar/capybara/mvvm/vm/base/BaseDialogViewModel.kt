@@ -1,9 +1,7 @@
 package com.ubitar.capybara.mvvm.vm.base
 
 import android.app.Application
-import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.action.DialogActions
-import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
 
 abstract class BaseDialogViewModel<M : BaseModel>(application: Application) :
@@ -43,25 +41,32 @@ abstract class BaseDialogViewModel<M : BaseModel>(application: Application) :
         baseActions.hideLoadingAction.call()
     }
 
-    fun showMessage(text: String,vararg extra: Any?) {
-        baseActions.showMessageAction.call(DialogActions.ShowMessageAction.ShowMessage(text,extra))
+
+    fun showMessage(
+        text: String,
+        onDismissListener: (() -> Unit)? = null,
+        vararg extra: Any?
+    ) {
+        baseActions.showMessageAction.call(DialogActions.ShowMessageAction.ShowMessage(text, onDismissListener, extra))
     }
 
     fun showSuccess(
         text: String,
+        onDismissListener: (() -> Unit)? = null,
         vararg extra: Any?
     ) {
         baseActions.showSuccessAction.call(
-            DialogActions.ShowSuccessAction.ShowSuccess(text, extra)
+            DialogActions.ShowSuccessAction.ShowSuccess(text, onDismissListener, extra)
         )
     }
 
     fun showFail(
         text: String,
+        onDismissListener: (() -> Unit)? = null,
         vararg extra: Any?
     ) {
         baseActions.showFailAction.call(
-            DialogActions.ShowFailAction.ShowFail(text, extra)
+            DialogActions.ShowFailAction.ShowFail(text, onDismissListener, extra)
         )
     }
 
@@ -70,10 +75,10 @@ abstract class BaseDialogViewModel<M : BaseModel>(application: Application) :
     }
 
     fun injectBaseActions(actions: DialogActions?) {
-        baseActions = actions?:DialogActions()
+        baseActions = actions ?: DialogActions()
     }
 
     /** 创建自己的Action，并继承DialogActions */
-    abstract fun onCreateActions(): DialogActions ?
+    abstract fun onCreateActions(): DialogActions?
 
 }

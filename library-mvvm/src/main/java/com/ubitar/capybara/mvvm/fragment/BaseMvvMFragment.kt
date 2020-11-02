@@ -81,7 +81,7 @@ abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<
             post(it)
         })
         viewModel.getBaseActions().setFragmentResultAction.observe(viewLifecycleOwner, Observer {
-            setFragmentResult(it.resultCode,it.data)
+            setFragmentResult(it.resultCode, it.data)
         })
         viewModel.getBaseActions().putNewBundleAction.observe(viewLifecycleOwner, Observer {
             putNewBundle(it)
@@ -130,13 +130,13 @@ abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<
             hideLoading()
         })
         viewModel.getBaseActions().showMessageAction.observe(viewLifecycleOwner, Observer {
-            showMessage(it.text, it.extra)
+            showMessage(it.text, it.onDismissListener, it.extra)
         })
         viewModel.getBaseActions().showSuccessAction.observe(viewLifecycleOwner, Observer {
-            showSuccess(it.text, it.extra)
+            showSuccess(it.text, it.onDismissListener, it.extra)
         })
         viewModel.getBaseActions().showFailAction.observe(viewLifecycleOwner, Observer {
-            showFail(it.text, it.extra)
+            showFail(it.text, it.onDismissListener, it.extra)
         })
     }
 

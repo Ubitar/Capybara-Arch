@@ -140,25 +140,31 @@ abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
         baseActions.hideLoadingAction.call()
     }
 
-    fun showMessage(text: String,vararg extra: Any?) {
-        baseActions.showMessageAction.call(ActivityActions.ShowMessageAction.ShowMessage(text,extra))
+    fun showMessage(
+        text: String,
+        onDismissListener:(()->Unit)?=null,
+        vararg extra: Any?
+    ) {
+        baseActions.showMessageAction.call(ActivityActions.ShowMessageAction.ShowMessage(text,onDismissListener,extra))
     }
 
     fun showSuccess(
         text: String,
+        onDismissListener:(()->Unit)?=null,
         vararg extra: Any?
     ) {
         baseActions.showSuccessAction.call(
-            ActivityActions.ShowSuccessAction.ShowSuccess(text, extra)
+            ActivityActions.ShowSuccessAction.ShowSuccess(text,onDismissListener, extra)
         )
     }
 
     fun showFail(
         text: String,
+        onDismissListener:(()->Unit)?=null,
         vararg extra: Any?
     ) {
         baseActions.showFailAction.call(
-            ActivityActions.ShowFailAction.ShowFail(text, extra)
+            ActivityActions.ShowFailAction.ShowFail(text,onDismissListener, extra)
         )
     }
 

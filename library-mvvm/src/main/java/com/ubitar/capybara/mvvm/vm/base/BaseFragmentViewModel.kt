@@ -3,6 +3,7 @@ package com.ubitar.capybara.mvvm.vm.base
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.action.DialogActions
 import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
@@ -198,28 +199,34 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
         baseActions.hideLoadingAction.call()
     }
 
-    fun showMessage(text: String,vararg extra: Any?) {
-        baseActions.showMessageAction.call(FragmentActions.ShowMessageAction.ShowMessage(text,extra))
+
+    fun showMessage(
+        text: String,
+        onDismissListener:(()->Unit)?=null,
+        vararg extra: Any?
+    ) {
+        baseActions.showMessageAction.call(FragmentActions.ShowMessageAction.ShowMessage(text,onDismissListener,extra))
     }
 
     fun showSuccess(
         text: String,
+        onDismissListener:(()->Unit)?=null,
         vararg extra: Any?
     ) {
         baseActions.showSuccessAction.call(
-            FragmentActions.ShowSuccessAction.ShowSuccess(text, extra)
+            FragmentActions.ShowSuccessAction.ShowSuccess(text,onDismissListener, extra)
         )
     }
 
     fun showFail(
         text: String,
+        onDismissListener:(()->Unit)?=null,
         vararg extra: Any?
     ) {
         baseActions.showFailAction.call(
-            FragmentActions.ShowFailAction.ShowFail(text, extra)
+            FragmentActions.ShowFailAction.ShowFail(text,onDismissListener, extra)
         )
     }
-
     /**
      * 收起键盘
      */

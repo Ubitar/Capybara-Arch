@@ -100,13 +100,13 @@ abstract class BaseMvvMDialogFragment<V : ViewDataBinding, VM : BaseDialogViewMo
             hideLoading()
         })
         viewModel.getBaseActions().showMessageAction.observe(binding.lifecycleOwner!!, Observer {
-            showMessage(it.text, it.extra)
+            showMessage(it.text,it.onDismissListener, it.extra)
         })
         viewModel.getBaseActions().showSuccessAction.observe(binding.lifecycleOwner!!, Observer {
-            showSuccess(it.text, it.extra)
+            showSuccess(it.text,it.onDismissListener, it.extra)
         })
         viewModel.getBaseActions().showFailAction.observe(binding.lifecycleOwner!!, Observer {
-            showFail(it.text, it.extra)
+            showFail(it.text,it.onDismissListener, it.extra)
         })
     }
 

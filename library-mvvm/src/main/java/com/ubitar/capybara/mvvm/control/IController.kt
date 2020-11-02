@@ -16,11 +16,11 @@ interface IController : LifecycleOwner {
 
     fun hideLoading()
 
-    fun showMessage(text: String, extra: Array<out Any?>)
+    fun showMessage(text: String, onDismissListener: (() -> Unit)? = null, extra: Array<out Any?>)
 
-    fun showSuccess(text: String, extra: Array<out Any?>)
+    fun showSuccess(text: String, onDismissListener: (() -> Unit)? = null, extra: Array<out Any?>)
 
-    fun showFail(text: String, extra: Array<out Any?>)
+    fun showFail(text: String, onDismissListener: (() -> Unit)? = null, extra: Array<out Any?>)
 
     fun onDestroyController()
 
