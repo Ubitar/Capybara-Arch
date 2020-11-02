@@ -1,5 +1,8 @@
-package com.ubitar.capybara.network;
+package com.ubitar.capybara.network.function;
 
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
@@ -27,12 +30,11 @@ public class RetryWhenFunction implements Function<Flowable<? extends Throwable>
         return observable.flatMap(new Function<Throwable, Flowable<?>>() {
             @Override
             public Flowable<?> apply(Throwable throwable) throws Exception {
-                if (throwable instanceof ApiException) {
-                    ApiException exception = (ApiException) throwable;
-                    if (exception.getCode() == HttpError.NETWORK_ERROR) {
-                        if (currentTime++ < maxRetryCount) {
-                            return Flowable.just(currentTime).delay(delayTime, TimeUnit.MILLISECONDS);
-                        }
+                if (throwable instanceof ConnectException ||
+                        throwable instanceof UnknownHostException ||
+                        throwable instanceof SocketTimeoutException) {
+                    if (currentTime++ < maxRetryCount) {
+                        return Flowable.just(currentTime).delay(delayTime, TimeUnit.MILLISECONDS);
                     }
                 }
                 return Flowable.error(throwable);

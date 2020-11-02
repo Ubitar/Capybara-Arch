@@ -1,20 +1,16 @@
 package com.ubitar.capybara.network.compose;
 
 
-import com.ubitar.capybara.network.NetExceptionParser;
-import com.ubitar.capybara.network.Server;
+import com.ubitar.capybara.network.ApiException;
 import com.ubitar.capybara.network.bean.IBaseResponse;
 
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.functions.Function;
 
-public class ResponseCompose {
+public abstract class ResponseCompose {
 
-    public static Server.OnGlobalParser onParser;
-
-
-    public static <T> FlowableTransformer<IBaseResponse, T> parseResult() {
+    public  <T> FlowableTransformer<IBaseResponse, T> parseResult() {
         return upstream -> upstream
                 .onErrorResumeNext(new ResponseCompose.ErrorResumeFunction())
                 .flatMap(new ResponseCompose.ResponseFunction());
@@ -25,11 +21,16 @@ public class ResponseCompose {
      *
      * @param
      */
-    private static class ErrorResumeFunction implements Function<Throwable, Flowable<? extends IBaseResponse>> {
+    private  class ErrorResumeFunction implements Function<Throwable, Flowable<? extends IBaseResponse>> {
 
         @Override
         public Flowable<? extends IBaseResponse> apply(Throwable throwable) throws Exception {
-            return Flowable.error(NetExceptionParser.parse(throwable));
+            ApiException exception = null;
+                exception = onException(throwable);
+            if (exception != null) {
+                return Flowable.error(exception);
+            }
+            return Flowable.error(throwable);
         }
     }
 
@@ -39,14 +40,11 @@ public class ResponseCompose {
      *
      * @param
      */
-    private static class ResponseFunction<T extends IBaseResponse> implements Function<IBaseResponse, Flowable<T>> {
+    private  class ResponseFunction<T extends IBaseResponse> implements Function<IBaseResponse, Flowable<T>> {
 
         @Override
         public Flowable<T> apply(IBaseResponse tResponse) throws Exception {
-            Flowable flowable = null;
-            if (onParser != null) {
-                flowable = onParser.onParse(tResponse);
-            }
+            Flowable flowable = onParse(tResponse);
             if (flowable != null) {
                 return flowable;
             } else {
@@ -54,6 +52,10 @@ public class ResponseCompose {
             }
         }
     }
+
+    abstract protected ApiException onException(Throwable e);
+
+    abstract protected Flowable<IBaseResponse> onParse(IBaseResponse response);
 
 }
 

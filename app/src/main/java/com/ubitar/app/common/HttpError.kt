@@ -1,4 +1,4 @@
-package com.ubitar.capybara.network
+package com.ubitar.app.common
 
 /**
  * 网络请求返回的状态码

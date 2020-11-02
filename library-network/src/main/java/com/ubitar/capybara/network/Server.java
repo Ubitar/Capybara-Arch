@@ -1,7 +1,6 @@
 package com.ubitar.capybara.network;
 
 import com.ubitar.capybara.network.bean.IBaseResponse;
-import com.ubitar.capybara.network.compose.ResponseCompose;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,13 +17,11 @@ public class Server {
 
     private static Retrofit retrofit;
 
-    public static Server create(String host, OnCreateOkHttp onCreateOkHttp, OnGlobalException onException, OnGlobalParser onParser) {
-        return new Server(host,onCreateOkHttp,onException,onParser);
+    public static Server create(String host, OnCreateOkHttp onCreateOkHttp) {
+        return new Server(host,onCreateOkHttp);
     }
 
-    private Server(String host, OnCreateOkHttp onCreateOkHttp, OnGlobalException onException, OnGlobalParser onParser) {
-        NetExceptionParser.onException = onException;
-        ResponseCompose.onParser = onParser;
+    private Server(String host, OnCreateOkHttp onCreateOkHttp) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS);

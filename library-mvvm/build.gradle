@@ -55,7 +55,7 @@ publish {
     userOrg = "ubitar"
     groupId = "com.ubitar.capybara"
     artifactId = 'archcapybara-mvvm'
-    publishVersion = "1.0.7"
+    publishVersion = "1.0.8"
     desc = "a mvvm arch in capybaraarch"
     website = "https://github.com/Ubitar/CapybaraArch"
 }
