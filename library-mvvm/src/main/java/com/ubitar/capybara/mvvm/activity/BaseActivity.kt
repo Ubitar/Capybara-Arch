@@ -4,19 +4,24 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
+import android.view.KeyEvent
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
-
+import com.ubitar.capybara.mvvm.R
 import com.ubitar.capybara.mvvm.common.ActivityManager
 import com.ubitar.capybara.mvvm.control.ControlProvider
+import com.ubitar.capybara.mvvm.dispatcher.OnActivityResultDispatcher
+import com.ubitar.capybara.mvvm.dispatcher.OnKeyDownDispatcher
+import com.ubitar.capybara.mvvm.dispatcher.OnKeyUpDispatcher
 import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
-import com.ubitar.capybara.mvvm.R
 
 abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> :
     BaseMvvMActivity<V, VM>() {
 
     protected lateinit var controllerProvider: ControlProvider
+
+    private val onActivityResultDispatcher = OnActivityResultDispatcher()
+    private val onKeyDownDispatcher = OnKeyDownDispatcher()
+    private val onKeyUpDispatcher = OnKeyUpDispatcher()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,39 +63,34 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     @SuppressLint("RestrictedApi")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        onActivityResultForFragment(supportFragmentManager.fragments, requestCode, resultCode, data)
+        onActivityResultDispatcher.onActivityResult(supportFragmentManager, requestCode, resultCode, data)
     }
 
-    @SuppressLint("RestrictedApi")
-    private fun onActivityResultForFragment(
-        rootFragmentList: List<Fragment>?,
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-        if (rootFragmentList != null) {
-            for (fragment in rootFragmentList) {
-                if (fragment == null) continue
-                fragment.onActivityResult(requestCode, resultCode, data)
-                onActivityResultForFragment(
-                    fragment.childFragmentManager.fragments,
-                    requestCode,
-                    resultCode,
-                    data
-                )
-            }
-        }
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        val isPropagated = onKeyDownDispatcher.onKeyDown(supportFragmentManager, keyCode, event)
+        if (isPropagated) return isPropagated
+        else return super.onKeyDown(keyCode, event)
     }
 
-    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?,   extra: Array<out Any?>) {
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        val isPropagated = onKeyUpDispatcher.onKeyUp(supportFragmentManager, keyCode, event)
+        if (isPropagated) return isPropagated
+        else return super.onKeyUp(keyCode, event)
+    }
+
+    fun getOnActivityResultDispatcher(): OnActivityResultDispatcher {
+        return onActivityResultDispatcher
+    }
+
+    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
-    override fun showSuccess(text: String,  onDismissListener: (() -> Unit)? ,  extra: Array<out Any?>) {
+    override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showSuccess(text, onDismissListener, extra)
     }
 
-    override fun showFail(text: String,  onDismissListener: (() -> Unit)? , extra: Array<out Any?>) {
+    override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showFail(text, onDismissListener, extra)
     }
 
@@ -98,8 +98,8 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
         controllerProvider.get().hideLoading()
     }
 
-    override fun showMessage(text: String,  onDismissListener: (() -> Unit)? , extra: Array<out Any?>) {
-        controllerProvider.get().showMessage(text,onDismissListener, extra)
+    override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
+        controllerProvider.get().showMessage(text, onDismissListener, extra)
     }
 
     override fun getContext(): Context? {

@@ -18,7 +18,7 @@ public class NetworkManager {
 
     public <T> T createRepository(String tag, Class<T> service) {
         if (!servers.containsKey(tag)) throw new RuntimeException("please add server host");
-        Server creator= servers.get(tag);
+        Server creator = servers.get(tag);
         return creator.createService(service);
     }
 

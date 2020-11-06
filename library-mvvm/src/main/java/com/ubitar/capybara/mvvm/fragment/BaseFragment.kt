@@ -1,10 +1,7 @@
 package com.ubitar.capybara.mvvm.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 
@@ -89,6 +86,14 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         }
     }
 
+    open fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return false
+    }
+
+    open fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        return false
+    }
+
     override fun onCreateFragmentAnimator(): FragmentAnimator {
         val enterAnim = arguments?.getInt("custom_enter_transition_animation", R.anim.h_fragment_enter) ?: R.anim.h_fragment_enter
         val exitAnim = arguments?.getInt("custom_exit_transition_animation", R.anim.h_fragment_exit) ?: R.anim.h_fragment_exit
@@ -96,7 +101,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         val popExitAnim = arguments?.getInt("custom_pop_exit_transition_animation", R.anim.h_fragment_pop_exit) ?: R.anim.h_fragment_pop_exit
         return FragmentAnimator(enterAnim, exitAnim, popEnterAnim, popExitAnim)
     }
-
 
     override fun onDestroyController() {
         controllerProvider.get().onDestroy()
@@ -109,15 +113,15 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         })
     }
 
-    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?,   extra: Array<out Any?>) {
+    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
-    override fun showSuccess(text: String,  onDismissListener: (() -> Unit)? ,  extra: Array<out Any?>) {
+    override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showSuccess(text, onDismissListener, extra)
     }
 
-    override fun showFail(text: String,  onDismissListener: (() -> Unit)? , extra: Array<out Any?>) {
+    override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showFail(text, onDismissListener, extra)
     }
 
@@ -125,8 +129,8 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         controllerProvider.get().hideLoading()
     }
 
-    override fun showMessage(text: String,  onDismissListener: (() -> Unit)? , extra: Array<out Any?>) {
-        controllerProvider.get().showMessage(text,onDismissListener, extra)
+    override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
+        controllerProvider.get().showMessage(text, onDismissListener, extra)
     }
 
     /** 是否再加载完动画后才开始加载数据，这样是为了防止卡顿 ，默认：加载动画的同时调用 initData() */

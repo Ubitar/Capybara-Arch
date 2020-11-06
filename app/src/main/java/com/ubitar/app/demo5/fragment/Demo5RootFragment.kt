@@ -1,6 +1,7 @@
 package com.ubitar.app.demo5.fragment
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -23,6 +24,14 @@ class Demo5RootFragment : BaseFragment<FragmentDemo5RootBinding, Demo5RootViewMo
         super.initView()
         BarUtils.addMarginTopEqualStatusBarHeight(binding.viewStatusBar)
         initViewPager2()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        return super.onKeyUp(keyCode, event)
     }
 
     /** 初始化ViewPager */

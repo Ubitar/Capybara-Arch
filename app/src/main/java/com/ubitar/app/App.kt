@@ -27,6 +27,8 @@ class App : Application() {
         NetworkManager.getInstance()
             .addServer(NetworkTag.TAG1, Server.create(Host.DEFAULT_HOST_URL, {
                 //此处可以添加Logger拦截器或修改响应时间
+//                it.addInterceptor(LoggerInterceptor())
+//                it.addInterceptor(TokenInterceptor())
             }))
 
         //初始化Fragmentation
