@@ -13,7 +13,7 @@ abstract class BaseCenterPopupView<V : ViewDataBinding, VM : BasePopupViewModel<
 
     override fun onCreate() {
         super.onCreate()
-        controllerProvider = ControlProvider(parent.get()!!)
+        controllerProvider = ControlProvider.with(parent.get()!!)
         initParams()
         initViewModelParams()
         initView()
@@ -38,28 +38,24 @@ abstract class BaseCenterPopupView<V : ViewDataBinding, VM : BasePopupViewModel<
         super.onDismiss()
     }
 
-    override fun onDestroyController() {
-        controllerProvider.get().onDestroy()
-    }
-
-    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?,   extra: Array<out Any?>) {
+    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
-    override fun showSuccess(text: String, onDismissListener: (() -> Unit)? ,  extra: Array<out Any?>) {
-        controllerProvider.get().showSuccess(text,onDismissListener, extra)
+    override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
+        controllerProvider.get().showSuccess(text, onDismissListener, extra)
     }
 
-    override fun showFail(text: String, onDismissListener: (() -> Unit)? ,   extra: Array<out Any?>) {
-        controllerProvider.get().showFail(text,onDismissListener, extra)
+    override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
+        controllerProvider.get().showFail(text, onDismissListener, extra)
     }
 
     override fun hideLoading() {
         controllerProvider.get().hideLoading()
     }
 
-    override fun showMessage(text: String, onDismissListener: (() -> Unit)? ,   extra: Array<out Any?>) {
-        controllerProvider.get().showMessage(text, onDismissListener,extra)
+    override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
+        controllerProvider.get().showMessage(text, onDismissListener, extra)
     }
 
     /** 初始化页面参数  */

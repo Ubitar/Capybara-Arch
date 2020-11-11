@@ -23,7 +23,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        controllerProvider = ControlProvider(this)
+        controllerProvider = ControlProvider .with(this)
         initParams()
     }
 
@@ -100,10 +100,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         val popEnterAnim = arguments?.getInt("custom_pop_enter_transition_animation", R.anim.h_fragment_pop_enter) ?: R.anim.h_fragment_pop_enter
         val popExitAnim = arguments?.getInt("custom_pop_exit_transition_animation", R.anim.h_fragment_pop_exit) ?: R.anim.h_fragment_pop_exit
         return FragmentAnimator(enterAnim, exitAnim, popEnterAnim, popExitAnim)
-    }
-
-    override fun onDestroyController() {
-        controllerProvider.get().onDestroy()
     }
 
     override fun onBindObservable() {

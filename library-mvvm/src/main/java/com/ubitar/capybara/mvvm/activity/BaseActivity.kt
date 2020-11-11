@@ -26,7 +26,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityManager.getManager().addActivity(this)
-        controllerProvider = ControlProvider(this)
+        controllerProvider = ControlProvider .with(this)
         initParams()
         initViewModelParams()
         initView()
@@ -41,10 +41,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
 
     override fun onBeforeObservable() {
         super.onBeforeObservable()
-    }
-
-    override fun onDestroyController() {
-        controllerProvider.get().onDestroy()
     }
 
     override fun onDestroy() {

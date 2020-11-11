@@ -15,7 +15,7 @@ class AppActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivityCreated(activity: Activity, p1: Bundle?) {
         BackgroundLibrary.inject(activity)
         if (activity is AppCompatActivity)
-            activity.supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, false)
+            activity.supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, true)
         if(activity is IImmersionbar)
             ImmersionBar.with(activity).init()
     }

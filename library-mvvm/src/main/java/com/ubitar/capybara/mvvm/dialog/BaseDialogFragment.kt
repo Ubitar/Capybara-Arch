@@ -20,7 +20,7 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        controllerProvider = ControlProvider(this)
+        controllerProvider = ControlProvider.with(this)
         initParams()
     }
 
@@ -78,10 +78,6 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
         initView()
         viewModel.initEvent(this)
         viewModel.initData()
-    }
-
-    override fun onDestroyController() {
-        controllerProvider.get().onDestroy()
     }
 
     override fun onDestroyView() {

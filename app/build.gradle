@@ -79,11 +79,13 @@ dependencies {
     implementation dependencies.lifecycle_extensions
     implementation dependencies.viewpager2
     implementation dependencies.live_event_bus
+    debugImplementation dependencies.leakcanary
 //    implementation dependencies.archcapybara_mvvm
 //    implementation dependencies.archcapybara_network
     testImplementation dependencies.junit
     androidTestImplementation dependencies.test_runner
     androidTestImplementation dependencies.test_espresso_core
+
 
     implementation project(":library-mvvm")
     implementation project(":library-network")

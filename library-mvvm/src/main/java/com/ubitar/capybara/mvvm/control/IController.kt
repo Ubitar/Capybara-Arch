@@ -22,7 +22,5 @@ interface IController : LifecycleOwner {
 
     fun showFail(text: String, onDismissListener: (() -> Unit)? = null, extra: Array<out Any?>)
 
-    fun onDestroyController()
-
     fun getContext(): Context?
 }

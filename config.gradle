@@ -32,6 +32,7 @@ ext {
             "lifecycle_extensions"             : "androidx.lifecycle:lifecycle-extensions:2.2.0",
             "viewpager2"                       : 'androidx.viewpager2:viewpager2:1.0.0',
             "live_event_bus"                   : 'com.jeremyliao:live-event-bus-x:1.7.2',
+            "leakcanary"                       : "com.squareup.leakcanary:leakcanary-android:2.5",
             "archcapybara_mvvm"                : 'com.ubitar.capybara:archcapybara-mvvm:1.0.9',
             "archcapybara_network"             : 'com.ubitar.capybara:archcapybara-network:1.0.9',
             "junit"                            : "junit:junit:4.12",
