@@ -3,8 +3,6 @@ package com.ubitar.capybara.mvvm.vm.base
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import com.ubitar.capybara.mvvm.action.ActivityActions
-import com.ubitar.capybara.mvvm.action.DialogActions
 import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
 import me.yokeyword.fragmentation.ISupportFragment
@@ -83,11 +81,11 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
         baseActions.startAction.call(FragmentActions.StartAction.Start(toFragment))
     }
 
-    fun start(toFragment: ISupportFragment, fromParentFragment: Boolean) {
+    fun start(toFragment: ISupportFragment, activityFragmentManager: Boolean) {
         baseActions.startAction.call(
             FragmentActions.StartAction.Start(
                 toFragment,
-                fromParentFragment
+                activityFragmentManager
             )
         )
     }
@@ -97,13 +95,13 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
      */
     fun start(
         toFragment: ISupportFragment,
-        fromParentFragment: Boolean,
+        activityFragmentManager: Boolean,
         @ISupportFragment.LaunchMode launchMode: Int
     ) {
         baseActions.startAction.call(
             FragmentActions.StartAction.Start(
                 toFragment,
-                fromParentFragment,
+                activityFragmentManager,
                 launchMode
             )
         )
