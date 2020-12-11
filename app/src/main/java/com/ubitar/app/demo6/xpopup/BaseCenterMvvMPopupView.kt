@@ -65,6 +65,21 @@ abstract class BaseCenterMvvMPopupView<V : ViewDataBinding, VM : BasePopupViewMo
         viewModel.getBaseActions().showAction.observe(this, Observer {
             show()
         })
+        viewModel.getBaseActions().showLoadingAction.observe(this, Observer {
+            showLoading(it.isCancelEnable, it.isBackEnable, it.dismissListener, it.extra)
+        })
+        viewModel.getBaseActions().hideLoadingAction.observe(this, Observer {
+            hideLoading()
+        })
+        viewModel.getBaseActions().showMessageAction.observe(this, Observer {
+            showMessage(it.text, it.onDismissListener, it.extra)
+        })
+        viewModel.getBaseActions().showSuccessAction.observe(this, Observer {
+            showSuccess(it.text, it.onDismissListener, it.extra)
+        })
+        viewModel.getBaseActions().showFailAction.observe(this, Observer {
+            showFail(it.text, it.onDismissListener, it.extra)
+        })
     }
 
     override fun onDestroy() {
