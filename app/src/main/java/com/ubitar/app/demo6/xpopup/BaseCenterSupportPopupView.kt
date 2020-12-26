@@ -8,21 +8,11 @@ import com.lxj.xpopup.core.CenterPopupView
 import java.lang.ref.WeakReference
 
 abstract class BaseCenterSupportPopupView<V : ViewDataBinding, VM : BasePopupViewModel<*>>(iController: IController) :
-    CenterPopupView(iController.getContext()!!), LifecycleObserver, ViewModelStoreOwner, LifecycleOwner {
+    CenterPopupView(iController.getContext()!!), ViewModelStoreOwner, LifecycleOwner {
 
     protected val parent = WeakReference(iController)
 
     private var viewModelStore: ViewModelStore? = null
-
-    override fun onCreate() {
-        super.onCreate()
-        parent.get()?.lifecycle?.addObserver(this)
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    override fun onDestroy() {
-        parent.get()?.lifecycle?.removeObserver(this)
-    }
 
     override fun getLifecycle(): Lifecycle {
         return parent.get()?.lifecycle!!
