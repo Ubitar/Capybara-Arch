@@ -4,8 +4,8 @@ ext {
             buildToolsVersion  : "29.0.3",
             minSdkVersion      : 21,
             targetSdkVersion   : 29,
-            versionCode        : 13,
-            versionName        : "1.1.3",
+            versionCode        : 14,
+            versionName        : "1.2.0",
             sourceCompatibility: JavaVersion.VERSION_1_8,
             targetCompatibility: JavaVersion.VERSION_1_8
     ]
@@ -25,8 +25,8 @@ ext {
             'retrofit2rxjava'                  : 'com.squareup.retrofit2:adapter-rxjava2:2.5.0',
             "base_recycler_view_adapter_helper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.2",
             "blankj_utilcode"                  : "com.blankj:utilcode:1.28.0",
-            "fragmentation_core"               : 'me.ubitar:fragmentationx-core:1.0.0',
-            "fragmentation_swipeback"          : "me.xuexuan:fragmentationx-swipeback:1.0.5",
+            "fragmentation_core"               : 'com.github.weikaiyun.SFragmentation:fragmentation:1.6.5',
+            "fragmentation_swipeback"          : "com.github.weikaiyun.SFragmentation:fragmentation_swipeback:1.6.5",
             'xpopup'                           : 'com.lxj:xpopup:2.0.5',
             "tablayout"                        : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
             "lifecycle_extensions"             : "androidx.lifecycle:lifecycle-extensions:2.2.0",

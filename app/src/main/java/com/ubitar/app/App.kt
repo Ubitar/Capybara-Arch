@@ -11,6 +11,7 @@ import com.ubitar.capybara.mvvm.control.ControlConfig
 import com.ubitar.capybara.mvvm.control.ControlProvider
 import com.ubitar.capybara.network.Server
 import com.ubitar.capybara.network.NetworkManager
+import com.weikaiyun.fragmentation.Fragmentation
 
 class App : Application() {
 
@@ -32,10 +33,11 @@ class App : Application() {
             }))
 
         //初始化Fragmentation
-//        Fragmentation.builder()
-//            .stackViewMode(Fragmentation.SHAKE)
-//            .debug(BuildConfig.DEBUG)
-//            .install()
+        Fragmentation.builder()
+            .stackViewMode(Fragmentation.SHAKE)
+            .debug(BuildConfig.DEBUG)
+            .animation(R.anim.h_fragment_enter, R.anim.h_fragment_pop_exit, R.anim.h_fragment_pop_enter, R.anim.h_fragment_exit)
+            .install()
 
         ControlProvider.setGlobalConfig(ControlConfig().setGlobalControl(AppControllable()))
 

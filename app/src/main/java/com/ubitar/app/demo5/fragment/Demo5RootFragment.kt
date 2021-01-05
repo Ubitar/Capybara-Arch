@@ -26,6 +26,14 @@ class Demo5RootFragment : BaseFragment<FragmentDemo5RootBinding, Demo5RootViewMo
         initViewPager2()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onVisible() {
+        super.onVisible()
+    }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         return super.onKeyDown(keyCode, event)
     }

@@ -10,7 +10,7 @@ import com.ubitar.capybara.mvvm.control.ControlProvider
 
 
 import com.ubitar.capybara.mvvm.vm.base.BaseFragmentViewModel
-import me.yokeyword.fragmentation.anim.FragmentAnimator
+import com.weikaiyun.fragmentation.ExtraTransaction
 
 /**
  * Created by laohuang on 2018/9/9.
@@ -23,7 +23,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        controllerProvider = ControlProvider .with(this)
+        controllerProvider = ControlProvider.with(this)
         initParams()
     }
 
@@ -33,7 +33,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
-        return attachToSwipeBack(view!!)
+        return attachToSwipeBack(view)
     }
 
     override fun onCreatedViewModel() {
@@ -63,27 +63,18 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         super.onStop()
     }
 
-    override fun onSupportVisible() {
-        super.onSupportVisible()
+    override fun onVisible() {
+        super.onVisible()
     }
 
-    override fun onSupportInvisible() {
-        super.onSupportInvisible()
+    override fun onInvisible() {
+        super.onInvisible()
     }
 
-    override fun onEnterAnimationEnd(savedInstanceState: Bundle?) {
-        super.onEnterAnimationEnd(savedInstanceState)
-        if (isInitDataAfterAnimation() && viewModel.isUnInitData) {
-            viewModel.initData()
-        }
-    }
-
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
+    override fun lazyInit() {
+        super.lazyInit()
         viewModel.initEvent(this)
-        if (!isInitDataAfterAnimation()) {
-            viewModel.initData()
-        }
+        viewModel.initData()
     }
 
     open fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -94,12 +85,14 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
         return false
     }
 
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
+    override fun extraTransaction(): ExtraTransaction {
+        val transaction = super.extraTransaction()
         val enterAnim = arguments?.getInt("custom_enter_transition_animation", R.anim.h_fragment_enter) ?: R.anim.h_fragment_enter
         val exitAnim = arguments?.getInt("custom_exit_transition_animation", R.anim.h_fragment_exit) ?: R.anim.h_fragment_exit
         val popEnterAnim = arguments?.getInt("custom_pop_enter_transition_animation", R.anim.h_fragment_pop_enter) ?: R.anim.h_fragment_pop_enter
         val popExitAnim = arguments?.getInt("custom_pop_exit_transition_animation", R.anim.h_fragment_pop_exit) ?: R.anim.h_fragment_pop_exit
-        return FragmentAnimator(enterAnim, exitAnim, popEnterAnim, popExitAnim)
+        transaction.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim)
+        return transaction
     }
 
     override fun onBindObservable() {
@@ -127,11 +120,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
 
     override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
         controllerProvider.get().showMessage(text, onDismissListener, extra)
-    }
-
-    /** 是否再加载完动画后才开始加载数据，这样是为了防止卡顿 ，默认：加载动画的同时调用 initData() */
-    open fun isInitDataAfterAnimation(): Boolean {
-        return false
     }
 
     /** 初始化页面参数  */

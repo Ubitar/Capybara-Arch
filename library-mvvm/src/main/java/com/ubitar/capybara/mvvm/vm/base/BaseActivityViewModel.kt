@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Intent
 import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import me.yokeyword.fragmentation.ISupportFragment
+import com.weikaiyun.fragmentation.ISupportFragment
 
 abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
     BaseViewModel<M>(application) {
@@ -100,22 +100,6 @@ abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
                 targetFragmentClass,
                 includeTargetFragment,
                 afterPopTransactionRunnable
-            )
-        )
-    }
-
-    fun popTo(
-        targetFragmentClass: Class<*>,
-        includeTargetFragment: Boolean,
-        afterPopTransactionRunnable: Runnable,
-        popAnim: Int
-    ) {
-        baseActions.popToAction.call(
-            ActivityActions.PopToAction.PopTo(
-                targetFragmentClass,
-                includeTargetFragment,
-                afterPopTransactionRunnable,
-                popAnim
             )
         )
     }

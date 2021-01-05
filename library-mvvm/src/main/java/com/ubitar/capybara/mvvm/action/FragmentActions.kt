@@ -1,7 +1,7 @@
 package com.ubitar.capybara.mvvm.action
 
 import android.os.Bundle
-import me.yokeyword.fragmentation.ISupportFragment
+import com.weikaiyun.fragmentation.ISupportFragment
 
 open class FragmentActions {
 
@@ -64,9 +64,7 @@ open class FragmentActions {
 
         data class LoadRootFragment(
             val containerId: Int,
-            val toFragment: ISupportFragment,
-            val addToBackStack: Boolean? = null,
-            val allowAnim: Boolean? = null
+            val toFragment: ISupportFragment
         )
 
     }
@@ -98,8 +96,7 @@ open class FragmentActions {
         }
 
         data class ReplaceFragment(
-            val toFragment: ISupportFragment,
-            val addToBackStack: Boolean
+            val toFragment: ISupportFragment
         )
 
     }

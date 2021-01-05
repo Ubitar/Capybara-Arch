@@ -1,7 +1,7 @@
 package com.ubitar.capybara.mvvm.action
 
 import android.content.Intent
-import me.yokeyword.fragmentation.ISupportFragment
+import com.weikaiyun.fragmentation.ISupportFragment
 
 open class ActivityActions {
     val finishAction: FinishAction by lazy { FinishAction() }
@@ -84,8 +84,7 @@ open class ActivityActions {
         data class PopTo(
             val targetFragmentClass: Class<*>,
             val includeTargetFragment: Boolean,
-            val afterPopTransactionRunnable: Runnable? = null,
-            val popAnim: Int? = null
+            val afterPopTransactionRunnable: Runnable? = null
         )
 
     }

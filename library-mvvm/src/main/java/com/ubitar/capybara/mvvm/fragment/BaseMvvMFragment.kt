@@ -12,13 +12,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ubitar.capybara.mvvm.control.IController
 import com.ubitar.capybara.mvvm.IView
-import com.ubitar.capybara.mvvm.activity.BaseSupportActivity
 import com.ubitar.capybara.mvvm.vm.base.BaseFragmentViewModel
-import me.yokeyword.fragmentation.ISupportActivity
+import com.weikaiyun.fragmentation.ISupportActivity
+import com.weikaiyun.fragmentation.SupportActivity
+import com.weikaiyun.fragmentation_swipeback.SwipeBackFragment
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> :
-    BaseSwipeBackFragment(), IView, IController {
+    SwipeBackFragment(), IView, IController {
 
     protected lateinit var binding: V
     protected lateinit var viewModel: VM
@@ -88,20 +89,16 @@ abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<
             putNewBundle(it)
         })
         viewModel.getBaseActions().loadRootFragmentAction.observe(viewLifecycleOwner, Observer {
-            if (it.addToBackStack == null || it.allowAnim == null) loadRootFragment(
-                it.containerId,
-                it.toFragment
-            )
-            else loadRootFragment(it.containerId, it.toFragment, it.addToBackStack, it.allowAnim)
+             loadRootFragment(it.containerId, it.toFragment)
         })
         viewModel.getBaseActions().startAction.observe(viewLifecycleOwner, Observer {
             if (it.launchMode == null) {
                 if (it.activityFragmentManager)
-                    (requireActivity() as BaseSupportActivity).start(it.toFragment)
+                    (requireActivity() as SupportActivity).start(it.toFragment)
                 else start(it.toFragment)
             } else {
                 if (it.activityFragmentManager)
-                    (requireActivity() as BaseSupportActivity).start(it.toFragment, it.launchMode)
+                    (requireActivity() as SupportActivity).start(it.toFragment, it.launchMode)
                 else start(it.toFragment, it.launchMode)
             }
         })
@@ -115,7 +112,7 @@ abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<
             startWithPopTo(it.toFragment, it.targetFragmentClass, it.includeTargetFragment)
         })
         viewModel.getBaseActions().replaceFragmentAction.observe(viewLifecycleOwner, Observer {
-            replaceFragment(it.toFragment, it.addToBackStack)
+            replaceFragment(it.toFragment)
         })
         viewModel.getBaseActions().popAction.observe(viewLifecycleOwner, Observer {
             pop()

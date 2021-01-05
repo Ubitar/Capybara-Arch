@@ -5,7 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import me.yokeyword.fragmentation.ISupportFragment
+import com.weikaiyun.fragmentation.ISupportFragment
 
 abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
     BaseViewModel<M>(application) {
@@ -57,22 +57,6 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
             FragmentActions.LoadRootFragmentAction.LoadRootFragment(
                 containerId,
                 toFragment
-            )
-        )
-    }
-
-    fun loadRootFragment(
-        containerId: Int,
-        toFragment: ISupportFragment,
-        addToBackStack: Boolean,
-        allowAnim: Boolean
-    ) {
-        baseActions.loadRootFragmentAction.call(
-            FragmentActions.LoadRootFragmentAction.LoadRootFragment(
-                containerId,
-                toFragment,
-                addToBackStack,
-                allowAnim
             )
         )
     }
@@ -147,8 +131,7 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
     fun replaceFragmentAction(toFragment: ISupportFragment, addToBackStack: Boolean) {
         baseActions.replaceFragmentAction.call(
             FragmentActions.ReplaceFragmentAction.ReplaceFragment(
-                toFragment,
-                addToBackStack
+                toFragment
             )
         )
     }

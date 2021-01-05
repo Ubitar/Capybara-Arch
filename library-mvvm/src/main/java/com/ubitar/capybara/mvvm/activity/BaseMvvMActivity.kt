@@ -10,10 +10,11 @@ import androidx.lifecycle.*
 import com.ubitar.capybara.mvvm.control.IController
 import com.ubitar.capybara.mvvm.IView
 import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.weikaiyun.fragmentation_swipeback.SwipeBackActivity
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseMvvMActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> :
-    BaseSwipeBackActivity(), IView, IController {
+    SwipeBackActivity(), IView, IController {
     protected lateinit var binding: V
     protected lateinit var viewModel: VM
 
@@ -91,17 +92,10 @@ abstract class BaseMvvMActivity<V : ViewDataBinding, VM : BaseActivityViewModel<
         viewModel.getBaseActions().popToAction.observe(this, Observer {
             if (it.afterPopTransactionRunnable == null)
                 popTo(it.targetFragmentClass, it.includeTargetFragment)
-            else if (it.popAnim == null)
-                popTo(
-                    it.targetFragmentClass,
-                    it.includeTargetFragment,
-                    it.afterPopTransactionRunnable
-                )
             else popTo(
                 it.targetFragmentClass,
                 it.includeTargetFragment,
-                it.afterPopTransactionRunnable,
-                it.popAnim
+                it.afterPopTransactionRunnable
             )
         })
         viewModel.getBaseActions().showLoadingAction.observe(this, Observer {
