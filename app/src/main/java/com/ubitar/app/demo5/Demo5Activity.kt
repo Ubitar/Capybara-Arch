@@ -9,7 +9,7 @@ import com.ubitar.app.common.IImmersionbar
 import com.ubitar.app.databinding.ActivityDemo5Binding
 import com.ubitar.app.demo5.fragment.Demo5RootFragment
 import com.ubitar.capybara.mvvm.activity.BaseActivity
-import com.ubitar.capybara.mvvm.vm.EmptyActivityViewModel
+import com.ubitar.capybara.mvvm.vm.impl.EmptyActivityViewModel
 
 
 class Demo5Activity : BaseActivity<ActivityDemo5Binding, EmptyActivityViewModel>() , IImmersionbar {

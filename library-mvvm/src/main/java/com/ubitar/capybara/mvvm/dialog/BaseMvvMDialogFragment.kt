@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ubitar.capybara.mvvm.IView
 import com.ubitar.capybara.mvvm.control.IController
-import com.ubitar.capybara.mvvm.vm.base.BaseDialogViewModel
+import com.ubitar.capybara.mvvm.vm.BaseDialogViewModel
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseMvvMDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<*>> :

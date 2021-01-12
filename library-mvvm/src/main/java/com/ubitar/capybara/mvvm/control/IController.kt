@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 
 /**
- * 控制别人的控制者
+ * 通用控制器的实际执行者
  */
 interface IController : LifecycleOwner {
     fun showLoading(

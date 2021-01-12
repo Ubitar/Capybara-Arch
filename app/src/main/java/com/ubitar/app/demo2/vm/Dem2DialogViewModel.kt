@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.ubitar.capybara.mvvm.action.DialogActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseDialogViewModel
+import com.ubitar.capybara.mvvm.vm.BaseDialogViewModel
 
 class Dem2DialogViewModel(application: Application) : BaseDialogViewModel<BaseModel>(application) {
 

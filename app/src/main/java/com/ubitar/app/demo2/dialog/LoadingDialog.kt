@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import com.ubitar.app.R
 import com.ubitar.app.databinding.DialogLoadingBinding
 import com.ubitar.capybara.mvvm.dialog.BaseDialogFragment
-import com.ubitar.capybara.mvvm.vm.EmptyDialogViewModel
+import com.ubitar.capybara.mvvm.vm.impl.EmptyDialogViewModel
 
 class LoadingDialog : BaseDialogFragment<DialogLoadingBinding, EmptyDialogViewModel>() {
 

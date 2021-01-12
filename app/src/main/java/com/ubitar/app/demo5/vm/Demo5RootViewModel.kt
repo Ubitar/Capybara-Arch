@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseFragmentViewModel
+import com.ubitar.capybara.mvvm.vm.BaseFragmentViewModel
 
 class Demo5RootViewModel(application: Application) : BaseFragmentViewModel<BaseModel>(application) {
 

@@ -6,10 +6,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 
 import com.ubitar.capybara.mvvm.R
-import com.ubitar.capybara.mvvm.control.ControlProvider
+import com.ubitar.capybara.mvvm.control.impl.ControllableProvider
 
 
-import com.ubitar.capybara.mvvm.vm.base.BaseFragmentViewModel
+import com.ubitar.capybara.mvvm.vm.BaseFragmentViewModel
 import com.weikaiyun.fragmentation.ExtraTransaction
 
 /**
@@ -19,11 +19,10 @@ import com.weikaiyun.fragmentation.ExtraTransaction
 abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> :
     BaseMvvMFragment<V, VM>() {
 
-    protected lateinit var controllerProvider: ControlProvider
+    protected lateinit var controllableProvider: ControllableProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        controllerProvider = ControlProvider.with(this)
         initParams()
     }
 
@@ -47,6 +46,8 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        controllableProvider = ControllableProvider.with(this)
+        controllableProvider.get().onCreate()
         initViewModelParams()
         initView()
     }
@@ -69,6 +70,11 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
 
     override fun onInvisible() {
         super.onInvisible()
+    }
+
+    override fun onDestroyView() {
+        controllableProvider.get().onDestroy()
+        super.onDestroyView()
     }
 
     override fun lazyInit() {
@@ -103,23 +109,23 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<*>> 
     }
 
     override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
+        controllableProvider.get().showLoading( isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
     override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showSuccess(text, onDismissListener, extra)
+        controllableProvider.get().showSuccess(text, onDismissListener, extra)
     }
 
     override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showFail(text, onDismissListener, extra)
+        controllableProvider.get().showFail(text, onDismissListener, extra)
     }
 
     override fun hideLoading() {
-        controllerProvider.get().hideLoading()
+        controllableProvider.get().hideLoading()
     }
 
     override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showMessage(text, onDismissListener, extra)
+        controllableProvider.get().showMessage(text, onDismissListener, extra)
     }
 
     /** 初始化页面参数  */

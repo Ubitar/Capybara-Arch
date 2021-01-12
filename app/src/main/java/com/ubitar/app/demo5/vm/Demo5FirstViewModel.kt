@@ -12,7 +12,7 @@ import com.ubitar.app.demo5.event.TestEvent
 import com.ubitar.app.demo5.fragment.Demo5RootFragment
 import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseFragmentViewModel
+import com.ubitar.capybara.mvvm.vm.BaseFragmentViewModel
 
 import com.jeremyliao.liveeventbus.LiveEventBus
 

@@ -1,4 +1,4 @@
-package com.ubitar.capybara.mvvm.vm.base
+package com.ubitar.capybara.mvvm.vm
 
 import android.app.Activity
 import android.app.Application

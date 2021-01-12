@@ -7,8 +7,7 @@ import com.ubitar.app.common.AppActivityLifecycleCallbacks
 import com.ubitar.app.common.AppControllable
 import com.ubitar.app.common.Host
 import com.ubitar.app.common.NetworkTag
-import com.ubitar.capybara.mvvm.control.ControlConfig
-import com.ubitar.capybara.mvvm.control.ControlProvider
+import com.ubitar.capybara.mvvm.CMVVM
 import com.ubitar.capybara.network.Server
 import com.ubitar.capybara.network.NetworkManager
 import com.weikaiyun.fragmentation.Fragmentation
@@ -33,13 +32,16 @@ class App : Application() {
             }))
 
         //初始化Fragmentation
-        Fragmentation.builder()
+        val fragmentation=Fragmentation.builder()
             .stackViewMode(Fragmentation.SHAKE)
             .debug(BuildConfig.DEBUG)
             .animation(R.anim.h_fragment_enter, R.anim.h_fragment_pop_exit, R.anim.h_fragment_pop_enter, R.anim.h_fragment_exit)
             .install()
 
-        ControlProvider.setGlobalConfig(ControlConfig().setGlobalControl(AppControllable()))
+        CMVVM.builder()
+            .setGlobalControllable(AppControllable::class.java)
+            .setFragmentation(fragmentation)
+            .install()
 
         registerActivityLifecycleCallbacks(AppActivityLifecycleCallbacks())
     }

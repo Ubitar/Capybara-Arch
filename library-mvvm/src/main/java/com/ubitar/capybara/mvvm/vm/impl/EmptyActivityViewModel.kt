@@ -1,9 +1,9 @@
-package com.ubitar.capybara.mvvm.vm
+package com.ubitar.capybara.mvvm.vm.impl
 
 import android.app.Application
 import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 
 class EmptyActivityViewModel(application: Application) :
     BaseActivityViewModel<BaseModel>(

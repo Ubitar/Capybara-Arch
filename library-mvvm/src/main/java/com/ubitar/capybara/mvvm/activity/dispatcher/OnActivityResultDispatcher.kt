@@ -1,6 +1,5 @@
-package com.ubitar.capybara.mvvm.dispatcher
+package com.ubitar.capybara.mvvm.activity.dispatcher
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment

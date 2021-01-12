@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ToastUtils
 import com.ubitar.capybara.mvvm.action.ActivityActions
-import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 
 class Demo4ViewModel(application: Application) : BaseActivityViewModel<Demo4Model>(application) {
 

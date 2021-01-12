@@ -7,8 +7,8 @@ import android.widget.LinearLayout
 import androidx.databinding.ViewDataBinding
 import com.ubitar.capybara.mvvm.R
 
-import com.ubitar.capybara.mvvm.control.ControlProvider
-import com.ubitar.capybara.mvvm.vm.base.BaseDialogViewModel
+import com.ubitar.capybara.mvvm.control.impl.ControllableProvider
+import com.ubitar.capybara.mvvm.vm.BaseDialogViewModel
 
 
 abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<*>> :
@@ -16,11 +16,12 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
 
     private var onCanceledListener: (() -> Unit)? = null
 
-    protected lateinit var controllerProvider: ControlProvider
+    protected lateinit var controllableProvider: ControllableProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        controllerProvider = ControlProvider.with(this)
+        controllableProvider = ControllableProvider.with(this)
+        controllableProvider.get().onCreate()
         initParams()
     }
 
@@ -53,7 +54,7 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = Dialog(context!!, R.style.BaseDialogTheme)
+        val dialog = Dialog(requireContext(), R.style.BaseDialogTheme)
         if (!isDimAmountEnable())
             dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         dialog.window?.setDimAmount(getDimAmount())
@@ -81,6 +82,7 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
     }
 
     override fun onDestroyView() {
+        controllableProvider.get().onDestroy()
         super.onDestroyView()
     }
 
@@ -138,22 +140,22 @@ abstract class BaseDialogFragment<V : ViewDataBinding, VM : BaseDialogViewModel<
     }
 
     override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
+        controllableProvider.get().showLoading( isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
     override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showSuccess(text, onDismissListener, extra)
+        controllableProvider.get().showSuccess(text, onDismissListener, extra)
     }
 
     override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showFail(text, onDismissListener, extra)
+        controllableProvider.get().showFail(text, onDismissListener, extra)
     }
 
     override fun hideLoading() {
-        controllerProvider.get().hideLoading()
+        controllableProvider.get().hideLoading()
     }
 
     override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showMessage(text, onDismissListener, extra)
+        controllableProvider.get().showMessage(text, onDismissListener, extra)
     }
 }

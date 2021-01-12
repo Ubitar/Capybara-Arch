@@ -7,17 +7,16 @@ import android.os.Bundle
 import android.view.KeyEvent
 import androidx.databinding.ViewDataBinding
 import com.ubitar.capybara.mvvm.R
-import com.ubitar.capybara.mvvm.common.ActivityManager
-import com.ubitar.capybara.mvvm.control.ControlProvider
-import com.ubitar.capybara.mvvm.dispatcher.OnActivityResultDispatcher
-import com.ubitar.capybara.mvvm.dispatcher.OnKeyDownDispatcher
-import com.ubitar.capybara.mvvm.dispatcher.OnKeyUpDispatcher
-import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.ubitar.capybara.mvvm.control.impl.ControllableProvider
+import com.ubitar.capybara.mvvm.activity.dispatcher.OnActivityResultDispatcher
+import com.ubitar.capybara.mvvm.activity.dispatcher.OnKeyDownDispatcher
+import com.ubitar.capybara.mvvm.activity.dispatcher.OnKeyUpDispatcher
+import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 
 abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> :
     BaseMvvMActivity<V, VM>() {
 
-    protected lateinit var controllerProvider: ControlProvider
+    protected lateinit var controllableProvider: ControllableProvider
 
     private val onActivityResultDispatcher = OnActivityResultDispatcher()
     private val onKeyDownDispatcher = OnKeyDownDispatcher()
@@ -25,8 +24,8 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ActivityManager.getManager().addActivity(this)
-        controllerProvider = ControlProvider .with(this)
+        controllableProvider = ControllableProvider.with(this)
+        controllableProvider.get().onCreate()
         initParams()
         initViewModelParams()
         initView()
@@ -41,11 +40,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
 
     override fun onBeforeObservable() {
         super.onBeforeObservable()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        ActivityManager.getManager().finishActivity(this)
     }
 
     override fun finish() {
@@ -79,23 +73,23 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     }
 
     override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
+        controllableProvider.get().showLoading(isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
     override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showSuccess(text, onDismissListener, extra)
+        controllableProvider.get().showSuccess(text, onDismissListener, extra)
     }
 
     override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showFail(text, onDismissListener, extra)
+        controllableProvider.get().showFail(text, onDismissListener, extra)
     }
 
     override fun hideLoading() {
-        controllerProvider.get().hideLoading()
+        controllableProvider.get().hideLoading()
     }
 
     override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showMessage(text, onDismissListener, extra)
+        controllableProvider.get().showMessage(text, onDismissListener, extra)
     }
 
     override fun getContext(): Context? {

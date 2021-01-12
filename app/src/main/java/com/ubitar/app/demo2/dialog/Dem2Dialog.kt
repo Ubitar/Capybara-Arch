@@ -8,10 +8,10 @@ import com.ubitar.app.R
 import com.ubitar.app.databinding.DialogDemo2Binding
 import com.ubitar.app.demo2.Demo2Controllable
 import com.ubitar.app.demo2.vm.Dem2DialogViewModel
-import com.ubitar.capybara.mvvm.control.Control
+import com.ubitar.capybara.mvvm.control.Controllable
 import com.ubitar.capybara.mvvm.dialog.BaseDialogFragment
 
-@Control(Demo2Controllable::class)
+@Controllable(Demo2Controllable::class)
 class Dem2Dialog : BaseDialogFragment<DialogDemo2Binding, Dem2DialogViewModel>() {
 
     private lateinit var listener: () -> Unit

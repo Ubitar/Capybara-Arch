@@ -3,7 +3,7 @@ package com.ubitar.app.demo6.vm
 import android.app.Application
 import com.ubitar.app.demo6.action.PopupActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseViewModel
+import com.ubitar.capybara.mvvm.vm.BaseViewModel
 
 abstract class BasePopupViewModel<M : BaseModel>(application: Application) :
     BaseViewModel<M>(application) {

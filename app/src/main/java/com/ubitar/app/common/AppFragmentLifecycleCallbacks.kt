@@ -3,7 +3,6 @@ package com.ubitar.app.common
 import android.graphics.Color
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.blankj.utilcode.util.KeyboardUtils
 import com.gyf.immersionbar.ImmersionBar
 
 class AppFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCallbacks() {
@@ -16,10 +15,6 @@ class AppFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCallbacks
             immersionBar.navigationBarDarkIcon(true)
             immersionBar.init()
         }
-    }
-
-    override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
-        KeyboardUtils.hideSoftInput(f.requireActivity())
     }
 
 }

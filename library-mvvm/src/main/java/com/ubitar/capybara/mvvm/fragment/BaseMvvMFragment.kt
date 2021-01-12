@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ubitar.capybara.mvvm.control.IController
 import com.ubitar.capybara.mvvm.IView
-import com.ubitar.capybara.mvvm.vm.base.BaseFragmentViewModel
+import com.ubitar.capybara.mvvm.vm.BaseFragmentViewModel
 import com.weikaiyun.fragmentation.ISupportActivity
 import com.weikaiyun.fragmentation.SupportActivity
 import com.weikaiyun.fragmentation_swipeback.SwipeBackFragment
@@ -67,8 +67,8 @@ abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         binding.unbind()
+        super.onDestroyView()
     }
 
 

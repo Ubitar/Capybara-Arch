@@ -2,18 +2,19 @@ package com.ubitar.app.demo6.xpopup
 
 import androidx.databinding.ViewDataBinding
 import com.ubitar.app.demo6.vm.BasePopupViewModel
-import com.ubitar.capybara.mvvm.control.ControlProvider
+import com.ubitar.capybara.mvvm.control.impl.ControllableProvider
 import com.ubitar.capybara.mvvm.control.IController
 
 abstract class BaseCenterPopupView<V : ViewDataBinding, VM : BasePopupViewModel<*>>(parent: IController) :
     BaseCenterMvvMPopupView<V, VM>
         (parent) {
 
-    protected lateinit var controllerProvider: ControlProvider
+    protected lateinit var controllerProvider: ControllableProvider
 
     override fun onCreate() {
         super.onCreate()
-        controllerProvider = ControlProvider.with(parent.get()!!)
+        controllerProvider = ControllableProvider.with(parent.get()!!)
+        controllerProvider.get().onCreate()
         initParams()
         initViewModelParams()
         initView()
@@ -38,8 +39,13 @@ abstract class BaseCenterPopupView<V : ViewDataBinding, VM : BasePopupViewModel<
         super.onDismiss()
     }
 
+    override fun onDestroy() {
+        controllerProvider.get().onDestroy()
+        super.onDestroy()
+    }
+
     override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllerProvider.get().showLoading(this, isOutsideEnable, isBackEnable, onCanceledListener, extra)
+        controllerProvider.get().showLoading( isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
     override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {

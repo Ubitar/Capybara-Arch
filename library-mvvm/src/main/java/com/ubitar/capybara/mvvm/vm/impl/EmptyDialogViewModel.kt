@@ -1,9 +1,9 @@
-package com.ubitar.capybara.mvvm.vm
+package com.ubitar.capybara.mvvm.vm.impl
 
 import android.app.Application
 import com.ubitar.capybara.mvvm.action.DialogActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseDialogViewModel
+import com.ubitar.capybara.mvvm.vm.BaseDialogViewModel
 
 class EmptyDialogViewModel(application: Application) :
     BaseDialogViewModel<BaseModel>(

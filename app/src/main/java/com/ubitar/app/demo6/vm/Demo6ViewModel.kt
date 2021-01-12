@@ -4,7 +4,7 @@ import android.app.Application
 import android.view.View
 import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.model.EmptyModel
-import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 
 class Demo6ViewModel(application: Application) : BaseActivityViewModel<EmptyModel>(application) {
     override fun getModel(): Class<EmptyModel>? = null

@@ -4,4 +4,4 @@ import kotlin.reflect.KClass
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class Control(val type: KClass<*> = IControllable::class)
+annotation class Controllable(val type: KClass<*> = IControllable::class)

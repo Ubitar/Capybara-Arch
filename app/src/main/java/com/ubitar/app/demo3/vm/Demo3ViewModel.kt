@@ -9,7 +9,7 @@ import com.ubitar.app.demo3.adapter.Demo3Adapter
 import com.ubitar.app.demo3.bean.ListBean
 import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 
 class Demo3ViewModel(application: Application) : BaseActivityViewModel<BaseModel>(application) {
 

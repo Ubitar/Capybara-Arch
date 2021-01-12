@@ -13,10 +13,10 @@ import com.ubitar.app.databinding.ActivityDemo2Binding
 import com.ubitar.app.demo2.dialog.Dem2Dialog
 import com.ubitar.app.demo2.vm.Demo2ViewModel
 import com.ubitar.capybara.mvvm.activity.BaseActivity
-import com.ubitar.capybara.mvvm.control.Control
+import com.ubitar.capybara.mvvm.control.Controllable
 
 
-@Control(type = Demo2Controllable::class) //用来设置BaseActivity中showLoading和showMessage的行为
+@Controllable(type = Demo2Controllable::class) //用来设置BaseActivity中showLoading和showMessage的行为
 class Demo2Activity : BaseActivity<ActivityDemo2Binding, Demo2ViewModel>() , IImmersionbar {
 
     override fun getLayoutId(inflater: LayoutInflater, savedInstanceState: Bundle?): Int =

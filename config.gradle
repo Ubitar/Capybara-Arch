@@ -5,7 +5,7 @@ ext {
             minSdkVersion      : 21,
             targetSdkVersion   : 29,
             versionCode        : 14,
-            versionName        : "1.2.0",
+            versionName        : "1.2.1",
             sourceCompatibility: JavaVersion.VERSION_1_8,
             targetCompatibility: JavaVersion.VERSION_1_8
     ]
@@ -33,8 +33,8 @@ ext {
             "viewpager2"                       : 'androidx.viewpager2:viewpager2:1.0.0',
             "live_event_bus"                   : 'com.jeremyliao:live-event-bus-x:1.7.2',
             "leakcanary"                       : "com.squareup.leakcanary:leakcanary-android:2.5",
-            "archcapybara_mvvm"                : 'com.ubitar.capybara:archcapybara-mvvm:1.1.1',
-            "archcapybara_network"             : 'com.ubitar.capybara:archcapybara-network:1.1.1',
+            "archcapybara_mvvm"                : 'com.ubitar.capybara:archcapybara-mvvm:1.2.1',
+            "archcapybara_network"             : 'com.ubitar.capybara:archcapybara-network:1.2.1',
             "junit"                            : "junit:junit:4.12",
             "test_runner"                      : "androidx.test:runner:1.2.0",
             "test_espresso_core"               : "androidx.test.espresso:espresso-core:3.2.0",

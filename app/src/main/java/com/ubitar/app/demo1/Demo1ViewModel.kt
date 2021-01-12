@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.ubitar.app.demo1.action.Demo1Actions
 import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 
 class Demo1ViewModel(application: Application) : BaseActivityViewModel<BaseModel>(application) {
 

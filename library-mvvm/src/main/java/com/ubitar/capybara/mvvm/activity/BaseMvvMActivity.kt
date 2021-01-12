@@ -9,7 +9,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.*
 import com.ubitar.capybara.mvvm.control.IController
 import com.ubitar.capybara.mvvm.IView
-import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 import com.weikaiyun.fragmentation_swipeback.SwipeBackActivity
 import java.lang.reflect.ParameterizedType
 

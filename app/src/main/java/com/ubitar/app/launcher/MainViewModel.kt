@@ -13,7 +13,7 @@ import com.ubitar.app.demo5.Demo5Activity
 import com.ubitar.app.demo6.Demo6Activity
 import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.model.BaseModel
-import com.ubitar.capybara.mvvm.vm.base.BaseActivityViewModel
+import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 
 
 class MainViewModel(application: Application) : BaseActivityViewModel<BaseModel>(application) {

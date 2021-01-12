@@ -1,12 +1,13 @@
 package com.ubitar.capybara.mvvm.control
 
 /**
- * 被别人控制
+ * 通用控制器的执行内容描述
  */
 interface IControllable {
 
+    fun onCreate()
+
     fun showLoading(
-        controller: IController,
         isOutsideEnable: Boolean = false,
         isBackEnable: Boolean = true,
         onCanceledListener: (() -> Unit)? = null,

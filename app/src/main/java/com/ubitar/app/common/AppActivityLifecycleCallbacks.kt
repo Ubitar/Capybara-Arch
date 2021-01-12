@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.KeyboardUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.noober.background.BackgroundLibrary
 
@@ -27,7 +26,6 @@ class AppActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityPaused(activity: Activity) {
-        KeyboardUtils.hideSoftInput(activity)
     }
 
     override fun onActivityStopped(activity: Activity) {

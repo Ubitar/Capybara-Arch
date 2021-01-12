@@ -72,12 +72,10 @@ public abstract class SingleLiveAction<T> extends MutableLiveData<T> {
     /**
      * Used for cases where T is Void, to make calls cleaner.
      */
-    @MainThread
     public void call() {
         postValue(null);
     }
 
-    @MainThread
     public void call(T value) {
         postValue(value);
     }
