@@ -6,7 +6,6 @@ import com.blankj.utilcode.util.Utils
 import com.ubitar.app.common.AppActivityLifecycleCallbacks
 import com.ubitar.app.common.AppControllable
 import com.ubitar.app.common.Host
-import com.ubitar.app.common.NetworkTag
 import com.ubitar.capybara.mvvm.CMVVM
 import com.ubitar.capybara.network.Server
 import com.ubitar.capybara.network.NetworkManager
@@ -25,7 +24,7 @@ class App : Application() {
         Utils.init(this)
 
         NetworkManager.getInstance()
-            .addServer(NetworkTag.TAG1, Server.create(Host.DEFAULT_HOST_URL, {
+            .addServer(Host.DEFAULT_HOST_URL, Server.create(Host.DEFAULT_HOST_URL, {
                 //此处可以添加Logger拦截器或修改响应时间
 //                it.addInterceptor(LoggerInterceptor())
 //                it.addInterceptor(TokenInterceptor())
@@ -38,6 +37,7 @@ class App : Application() {
             .animation(R.anim.h_fragment_enter, R.anim.h_fragment_pop_exit, R.anim.h_fragment_pop_enter, R.anim.h_fragment_exit)
             .install()
 
+        //初始化MVVM
         CMVVM.builder()
             .setGlobalControllable(AppControllable::class.java)
             .setFragmentation(fragmentation)

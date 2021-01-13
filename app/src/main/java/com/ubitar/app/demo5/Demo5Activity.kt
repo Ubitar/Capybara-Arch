@@ -11,8 +11,8 @@ import com.ubitar.app.demo5.fragment.Demo5RootFragment
 import com.ubitar.capybara.mvvm.activity.BaseActivity
 import com.ubitar.capybara.mvvm.vm.impl.EmptyActivityViewModel
 
-
-class Demo5Activity : BaseActivity<ActivityDemo5Binding, EmptyActivityViewModel>() , IImmersionbar {
+@IImmersionbar
+class Demo5Activity : BaseActivity<ActivityDemo5Binding, EmptyActivityViewModel>()  {
     override fun getLayoutId(inflater: LayoutInflater, savedInstanceState: Bundle?): Int =
         R.layout.activity_demo5
 

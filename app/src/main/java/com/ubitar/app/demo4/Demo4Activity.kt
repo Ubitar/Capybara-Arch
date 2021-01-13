@@ -11,7 +11,8 @@ import com.ubitar.app.databinding.ActivityDemo4Binding
 import com.ubitar.capybara.mvvm.activity.BaseActivity
 
 
-class Demo4Activity : BaseActivity<ActivityDemo4Binding, Demo4ViewModel>() , IImmersionbar {
+@IImmersionbar
+class Demo4Activity : BaseActivity<ActivityDemo4Binding, Demo4ViewModel>()  {
     override fun getLayoutId(inflater: LayoutInflater, savedInstanceState: Bundle?): Int =
         R.layout.activity_demo4
 

@@ -9,11 +9,11 @@ class AppFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCallbacks
 
     override fun onFragmentResumed(fm: FragmentManager, f: Fragment) {
         super.onFragmentResumed(fm, f)
-        if (f is IImmersionbar) {
-            val immersionBar = ImmersionBar.with(f)
-            immersionBar.navigationBarColorInt(Color.WHITE)
-            immersionBar.navigationBarDarkIcon(true)
-            immersionBar.init()
+        f::class.java.getAnnotation(IImmersionbar::class.java)?.let {
+            ImmersionBar.with(f)
+                .navigationBarColorInt(Color.WHITE)
+                .navigationBarDarkIcon(true)
+                .init()
         }
     }
 

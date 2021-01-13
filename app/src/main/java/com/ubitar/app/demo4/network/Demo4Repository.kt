@@ -1,7 +1,7 @@
 package com.ubitar.app.demo4.network
 
 
-import com.ubitar.app.common.NetworkTag
+import com.ubitar.app.common.Host
 import com.ubitar.app.demo4.network.bean.UserBean
 import com.ubitar.capybara.network.bean.IBaseResponse
 import com.ubitar.capybara.network.repository.BaseRepository
@@ -24,7 +24,7 @@ class Demo4Repository : BaseRepository<Demo4Api>() {
     }
 
     override fun getServerTag(): String {
-        return NetworkTag.TAG1
+        return Host.DEFAULT_HOST_URL
     }
 
     fun login(account: String, password: String): Flowable<UserBean> {

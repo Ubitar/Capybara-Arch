@@ -13,8 +13,8 @@ import com.ubitar.app.demo3.vm.Demo3ViewModel
 
 import com.ubitar.capybara.mvvm.activity.BaseActivity
 
-
-class Demo3Activity : BaseActivity<ActivityDemo3Binding, Demo3ViewModel>() , IImmersionbar {
+@IImmersionbar
+class Demo3Activity : BaseActivity<ActivityDemo3Binding, Demo3ViewModel>() {
 
     override fun getLayoutId(inflater: LayoutInflater, savedInstanceState: Bundle?): Int =
         R.layout.activity_demo3

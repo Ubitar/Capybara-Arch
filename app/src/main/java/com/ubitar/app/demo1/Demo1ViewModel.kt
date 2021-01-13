@@ -15,12 +15,12 @@ class Demo1ViewModel(application: Application) : BaseActivityViewModel<BaseModel
 
     var valueFromActivity = "这个值从Activity那进行设置注入"
 
-    var edtContent1 = MutableLiveData("")
-    var checkBoxValue = MutableLiveData(false)
-    var checkBoxText = MutableLiveData("选择后显示下方按钮")
-    var radioBtnValue = MutableLiveData(false)
+    val edtContent1 = MutableLiveData("")
+    val checkBoxValue = MutableLiveData(false)
+    val checkBoxText = MutableLiveData("选择后显示下方按钮")
+    val radioBtnValue = MutableLiveData(false)
 
-    var actions = Demo1Actions()
+    val actions = Demo1Actions()
 
     /** 这个是 MVVM 中的  Model层，如没有网络或数据库需求，传NUll即可 */
     override fun getModel(): Class<BaseModel>? = null
