@@ -2,6 +2,7 @@ package com.ubitar.capybara.mvvm.action
 
 import android.content.Intent
 import com.weikaiyun.fragmentation.ISupportFragment
+import java.lang.ref.WeakReference
 
 open class ActivityActions {
     val finishAction: FinishAction by lazy { FinishAction() }
@@ -46,9 +47,9 @@ open class ActivityActions {
         }
 
         data class Start(
-            val toFragment: ISupportFragment,
-            val fromParentFragment: Boolean = false,
-            val launchMode: Int? = null
+                val toFragment: WeakReference<ISupportFragment>,
+                val fromParentFragment: Boolean = false,
+                val launchMode: Int? = null
         )
     }
 
@@ -72,7 +73,7 @@ open class ActivityActions {
 
         data class LoadRootFragment(
             val containerId: Int,
-            val toFragment: ISupportFragment
+            val toFragment: WeakReference<ISupportFragment>
         )
     }
 
@@ -80,13 +81,11 @@ open class ActivityActions {
         override fun describe(): String {
             return "Activity.popTo()方法"
         }
-
         data class PopTo(
             val targetFragmentClass: Class<*>,
             val includeTargetFragment: Boolean,
-            val afterPopTransactionRunnable: Runnable? = null
+            val afterPopTransactionRunnable: WeakReference<Runnable>? = null
         )
-
     }
 
     class SetResultAction : SingleLiveAction<SetResultAction.SetResult>() {
@@ -108,7 +107,7 @@ open class ActivityActions {
         }
 
         data class StartWithPopTo(
-            val toFragment: ISupportFragment,
+            val toFragment: WeakReference<ISupportFragment>,
             val targetFragmentClass: Class<*>,
             val includeTargetFragment: Boolean
         )

@@ -14,7 +14,7 @@ import com.weikaiyun.fragmentation_swipeback.SwipeBackActivity
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseMvvMActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> :
-    SwipeBackActivity(), IView, IController {
+        SwipeBackActivity(), IView, IController {
     protected lateinit var binding: V
     protected lateinit var viewModel: VM
 
@@ -77,14 +77,14 @@ abstract class BaseMvvMActivity<V : ViewDataBinding, VM : BaseActivityViewModel<
             post(it)
         })
         viewModel.getBaseActions().loadRootFragmentAction.observe(this, Observer {
-            loadRootFragment(it.containerId, it.toFragment)
+            loadRootFragment(it.containerId, it.toFragment.get()!!)
         })
         viewModel.getBaseActions().startAction.observe(this, Observer {
-            if (it.launchMode == null) start(it.toFragment)
-            else start(it.toFragment, it.launchMode)
+            if (it.launchMode == null) start(it.toFragment.get()!!)
+            else start(it.toFragment.get()!!, it.launchMode)
         })
         viewModel.getBaseActions().startWithPopToAction.observe(this, Observer {
-            startWithPopTo(it.toFragment, it.targetFragmentClass, it.includeTargetFragment)
+            startWithPopTo(it.toFragment.get()!!, it.targetFragmentClass, it.includeTargetFragment)
         })
         viewModel.getBaseActions().popAction.observe(this, Observer {
             pop()
@@ -93,9 +93,9 @@ abstract class BaseMvvMActivity<V : ViewDataBinding, VM : BaseActivityViewModel<
             if (it.afterPopTransactionRunnable == null)
                 popTo(it.targetFragmentClass, it.includeTargetFragment)
             else popTo(
-                it.targetFragmentClass,
-                it.includeTargetFragment,
-                it.afterPopTransactionRunnable
+                    it.targetFragmentClass,
+                    it.includeTargetFragment,
+                    it.afterPopTransactionRunnable.get()!!
             )
         })
         viewModel.getBaseActions().showLoadingAction.observe(this, Observer {
@@ -105,13 +105,13 @@ abstract class BaseMvvMActivity<V : ViewDataBinding, VM : BaseActivityViewModel<
             hideLoading()
         })
         viewModel.getBaseActions().showMessageAction.observe(this, Observer {
-            showMessage(it.text,it.onDismissListener, it.extra)
+            showMessage(it.text, it.onDismissListener, it.extra)
         })
         viewModel.getBaseActions().showSuccessAction.observe(this, Observer {
-            showSuccess(it.text, it.onDismissListener,it.extra)
+            showSuccess(it.text, it.onDismissListener, it.extra)
         })
         viewModel.getBaseActions().showFailAction.observe(this, Observer {
-            showFail(it.text,it.onDismissListener, it.extra)
+            showFail(it.text, it.onDismissListener, it.extra)
         })
     }
 
@@ -119,9 +119,9 @@ abstract class BaseMvvMActivity<V : ViewDataBinding, VM : BaseActivityViewModel<
      * 创建并获取DataBinding
      */
     override fun <T : ViewDataBinding> getDataBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): T {
         return DataBindingUtil.setContentView(this, getLayoutId(inflater, savedInstanceState))
     }

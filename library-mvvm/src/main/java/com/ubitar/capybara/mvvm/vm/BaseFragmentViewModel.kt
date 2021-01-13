@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
 import com.weikaiyun.fragmentation.ISupportFragment
+import java.lang.ref.WeakReference
 
 abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
     BaseViewModel<M>(application) {
@@ -56,19 +57,19 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
         baseActions.loadRootFragmentAction.call(
             FragmentActions.LoadRootFragmentAction.LoadRootFragment(
                 containerId,
-                toFragment
+                    WeakReference(toFragment)
             )
         )
     }
 
     fun start(toFragment: ISupportFragment) {
-        baseActions.startAction.call(FragmentActions.StartAction.Start(toFragment))
+        baseActions.startAction.call(FragmentActions.StartAction.Start(WeakReference(toFragment)))
     }
 
     fun start(toFragment: ISupportFragment, activityFragmentManager: Boolean) {
         baseActions.startAction.call(
             FragmentActions.StartAction.Start(
-                toFragment,
+                    WeakReference(toFragment),
                 activityFragmentManager
             )
         )
@@ -84,7 +85,7 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
     ) {
         baseActions.startAction.call(
             FragmentActions.StartAction.Start(
-                toFragment,
+                    WeakReference(toFragment),
                 activityFragmentManager,
                 launchMode
             )
@@ -97,7 +98,7 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
     fun startForResult(toFragment: ISupportFragment, requestCode: Int) {
         baseActions.startForResultAction.call(
             FragmentActions.StartForResultAction.StartForResult(
-                toFragment,
+                    WeakReference(toFragment),
                 requestCode
             )
         )
@@ -121,17 +122,17 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
     ) {
         baseActions.startWithPopToAction.call(
             FragmentActions.StartWithPopToAction.StartWithPopTo(
-                toFragment,
+                    WeakReference(toFragment),
                 targetFragmentClass,
                 includeTargetFragment
             )
         )
     }
 
-    fun replaceFragmentAction(toFragment: ISupportFragment, addToBackStack: Boolean) {
+    fun replaceFragmentAction(toFragment: ISupportFragment) {
         baseActions.replaceFragmentAction.call(
             FragmentActions.ReplaceFragmentAction.ReplaceFragment(
-                toFragment
+                    WeakReference(toFragment)
             )
         )
     }

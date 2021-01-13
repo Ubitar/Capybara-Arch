@@ -63,12 +63,6 @@ open class PopupActions {
         )
     }
 
-    class HideKeyboardAction : SingleLiveAction<Any>() {
-        override fun describe(): String {
-            return "BaseFragment.hideKeyBoard()"
-        }
-    }
-
     class ShowSuccessAction : SingleLiveAction<ShowSuccessAction.ShowSuccess>() {
         override fun describe(): String {
             return "IController.showSuccess()"

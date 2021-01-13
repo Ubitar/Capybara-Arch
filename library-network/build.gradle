@@ -59,7 +59,7 @@ publish {
     userOrg = "ubitar"
     groupId = "com.ubitar.capybara"
     artifactId = 'archcapybara-network'
-    publishVersion = "1.2.1"
+    publishVersion = "1.2.2"
     desc = "a network arch in capybaraarch"
     website = "https://github.com/Ubitar/CapybaraArch"
 }

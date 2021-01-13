@@ -5,6 +5,7 @@ import android.content.Intent
 import com.ubitar.capybara.mvvm.action.ActivityActions
 import com.ubitar.capybara.mvvm.model.BaseModel
 import com.weikaiyun.fragmentation.ISupportFragment
+import java.lang.ref.WeakReference
 
 abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
     BaseViewModel<M>(application) {
@@ -44,19 +45,19 @@ abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
         baseActions.loadRootFragmentAction.call(
             ActivityActions.LoadRootFragmentAction.LoadRootFragment(
                 containerId,
-                toFragment
+                    WeakReference(toFragment)
             )
         )
     }
 
     fun start(toFragment: ISupportFragment) {
-        baseActions.startAction.call(ActivityActions.StartAction.Start(toFragment))
+        baseActions.startAction.call(ActivityActions.StartAction.Start(WeakReference(toFragment)))
     }
 
     fun start(toFragment: ISupportFragment, @ISupportFragment.LaunchMode launchMode: Int) {
         baseActions.startAction.call(
             ActivityActions.StartAction.Start(
-                toFragment,
+                    WeakReference(toFragment),
                 false,
                 launchMode
             )
@@ -70,7 +71,7 @@ abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
     ) {
         baseActions.startWithPopToAction.call(
             ActivityActions.StartWithPopToAction.StartWithPopTo(
-                toFragment,
+                WeakReference(toFragment),
                 targetFragmentClass,
                 includeTargetFragment
             )
@@ -99,7 +100,7 @@ abstract class BaseActivityViewModel<M : BaseModel>(application: Application) :
             ActivityActions.PopToAction.PopTo(
                 targetFragmentClass,
                 includeTargetFragment,
-                afterPopTransactionRunnable
+                    WeakReference(afterPopTransactionRunnable)
             )
         )
     }

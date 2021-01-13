@@ -2,6 +2,7 @@ package com.ubitar.capybara.mvvm.action
 
 import android.os.Bundle
 import com.weikaiyun.fragmentation.ISupportFragment
+import java.lang.ref.WeakReference
 
 open class FragmentActions {
 
@@ -51,9 +52,9 @@ open class FragmentActions {
         }
 
         data class Start(
-            val toFragment: ISupportFragment,
-            val activityFragmentManager: Boolean = false,
-            val launchMode: Int? = null
+                val toFragment: WeakReference<ISupportFragment>,
+                val activityFragmentManager: Boolean = false,
+                val launchMode: Int? = null
         )
     }
 
@@ -64,7 +65,7 @@ open class FragmentActions {
 
         data class LoadRootFragment(
             val containerId: Int,
-            val toFragment: ISupportFragment
+            val toFragment: WeakReference<ISupportFragment>
         )
 
     }
@@ -96,7 +97,7 @@ open class FragmentActions {
         }
 
         data class ReplaceFragment(
-            val toFragment: ISupportFragment
+            val toFragment: WeakReference<ISupportFragment>
         )
 
     }
@@ -121,7 +122,7 @@ open class FragmentActions {
         }
 
         data class StartForResult(
-            val toFragment: ISupportFragment,
+            val toFragment: WeakReference<ISupportFragment>,
             val requestCode: Int
         )
 
@@ -142,7 +143,7 @@ open class FragmentActions {
         }
 
         data class StartWithPopTo(
-            val toFragment: ISupportFragment,
+            val toFragment: WeakReference<ISupportFragment>,
             val targetFragmentClass: Class<*>,
             val includeTargetFragment: Boolean
         )

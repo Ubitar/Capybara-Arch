@@ -89,30 +89,30 @@ abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<
             putNewBundle(it)
         })
         viewModel.getBaseActions().loadRootFragmentAction.observe(viewLifecycleOwner, Observer {
-             loadRootFragment(it.containerId, it.toFragment)
+             loadRootFragment(it.containerId, it.toFragment.get()!!)
         })
         viewModel.getBaseActions().startAction.observe(viewLifecycleOwner, Observer {
             if (it.launchMode == null) {
                 if (it.activityFragmentManager)
-                    (requireActivity() as SupportActivity).start(it.toFragment)
-                else start(it.toFragment)
+                    (requireActivity() as SupportActivity).start(it.toFragment.get()!!)
+                else start(it.toFragment.get()!!)
             } else {
                 if (it.activityFragmentManager)
-                    (requireActivity() as SupportActivity).start(it.toFragment, it.launchMode)
-                else start(it.toFragment, it.launchMode)
+                    (requireActivity() as SupportActivity).start(it.toFragment.get()!!, it.launchMode)
+                else start(it.toFragment.get()!!, it.launchMode)
             }
         })
         viewModel.getBaseActions().startForResultAction.observe(viewLifecycleOwner, Observer {
-            startForResult(it.toFragment, it.requestCode)
+            startForResult(it.toFragment.get()!!, it.requestCode)
         })
         viewModel.getBaseActions().startWithPopAction.observe(viewLifecycleOwner, Observer {
             startWithPop(it)
         })
         viewModel.getBaseActions().startWithPopToAction.observe(viewLifecycleOwner, Observer {
-            startWithPopTo(it.toFragment, it.targetFragmentClass, it.includeTargetFragment)
+            startWithPopTo(it.toFragment.get()!!, it.targetFragmentClass, it.includeTargetFragment)
         })
         viewModel.getBaseActions().replaceFragmentAction.observe(viewLifecycleOwner, Observer {
-            replaceFragment(it.toFragment)
+            replaceFragment(it.toFragment.get()!!)
         })
         viewModel.getBaseActions().popAction.observe(viewLifecycleOwner, Observer {
             pop()
