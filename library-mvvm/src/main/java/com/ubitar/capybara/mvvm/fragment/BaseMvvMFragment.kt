@@ -106,7 +106,7 @@ abstract class BaseMvvMFragment<V : ViewDataBinding, VM : BaseFragmentViewModel<
             startForResult(it.toFragment.get()!!, it.requestCode)
         })
         viewModel.getBaseActions().startWithPopAction.observe(viewLifecycleOwner, Observer {
-            startWithPop(it)
+            startWithPop(it.get())
         })
         viewModel.getBaseActions().startWithPopToAction.observe(viewLifecycleOwner, Observer {
             startWithPopTo(it.toFragment.get()!!, it.targetFragmentClass, it.includeTargetFragment)
