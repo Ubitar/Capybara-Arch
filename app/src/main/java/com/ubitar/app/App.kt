@@ -10,6 +10,8 @@ import com.ubitar.capybara.mvvm.CMVVM
 import com.ubitar.capybara.network.Server
 import com.ubitar.capybara.network.NetworkManager
 import com.weikaiyun.fragmentation.Fragmentation
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 class App : Application() {
 
@@ -28,13 +30,22 @@ class App : Application() {
                 //此处可以添加Logger拦截器或修改响应时间
 //                it.addInterceptor(LoggerInterceptor())
 //                it.addInterceptor(TokenInterceptor())
+            }, {
+                it.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
             }))
 
+
         //初始化Fragmentation
-        val fragmentation=Fragmentation.builder()
+        val fragmentation = Fragmentation.builder()
             .stackViewMode(Fragmentation.SHAKE)
             .debug(BuildConfig.DEBUG)
-            .animation(R.anim.h_fragment_enter, R.anim.h_fragment_pop_exit, R.anim.h_fragment_pop_enter, R.anim.h_fragment_exit)
+            .animation(
+                R.anim.h_fragment_enter,
+                R.anim.h_fragment_pop_exit,
+                R.anim.h_fragment_pop_enter,
+                R.anim.h_fragment_exit
+            )
             .install()
 
         //初始化MVVM
