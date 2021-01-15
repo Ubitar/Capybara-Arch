@@ -1,5 +1,6 @@
 package com.ubitar.app.demo2
 
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.ubitar.app.demo2.dialog.LoadingDialog
 import com.ubitar.capybara.mvvm.activity.BaseActivity
@@ -13,27 +14,47 @@ class Demo2Controllable : BaseControllable() {
     override fun onCreate() {
     }
 
-    override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
-        loadingDialog = WeakReference(LoadingDialog.Builder()
-            .setOutsideCancelable(isOutsideEnable)
-            .setBackEnable(isBackEnable)
-            .setDismissListener {
-                onCanceledListener?.invoke()
-            }
-            .build()
-        )
-        loadingDialog?.get()?.show((controller as BaseActivity<*, *>).supportFragmentManager, "loading")
+    override fun showLoading(
+        isOutsideEnable: Boolean,
+        isBackEnable: Boolean,
+        onCanceledListener: (() -> Unit)?,
+        extra: Array<out Any?>
+    ) {
+        hideLoading()
+        val activity = ActivityUtils.getTopActivity()
+        if (ActivityUtils.isActivityAlive(activity)) {
+            loadingDialog = WeakReference(LoadingDialog.Builder()
+                .setOutsideCancelable(isOutsideEnable)
+                .setBackEnable(isBackEnable)
+                .setDismissListener {
+                    onCanceledListener?.invoke()
+                }
+                .build()
+            )
+            loadingDialog?.get()
+                ?.show((controller as BaseActivity<*, *>).supportFragmentManager, "loading")
+        }
     }
 
     override fun hideLoading() {
-        loadingDialog?.get()?.dismiss()
+        val activity = ActivityUtils.getTopActivity()
+        if (ActivityUtils.isActivityAlive(activity))
+            loadingDialog?.get()?.dismiss()
     }
 
-    override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
+    override fun showMessage(
+        text: String,
+        onDismissListener: (() -> Unit)?,
+        extra: Array<out Any?>
+    ) {
         ToastUtils.showShort(text)
     }
 
-    override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
+    override fun showSuccess(
+        text: String,
+        onDismissListener: (() -> Unit)?,
+        extra: Array<out Any?>
+    ) {
     }
 
     override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {

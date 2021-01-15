@@ -82,8 +82,9 @@ abstract class BaseCenterMvvMPopupView<V : ViewDataBinding, VM : BasePopupViewMo
         })
     }
 
-    override fun onDestroy() {
+    override fun onDetachedFromWindow() {
         binding.unbind()
+        super.onDetachedFromWindow()
     }
 
     override fun <T : ViewDataBinding> getDataBinding(

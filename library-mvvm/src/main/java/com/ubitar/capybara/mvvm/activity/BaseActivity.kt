@@ -16,7 +16,7 @@ import com.ubitar.capybara.mvvm.vm.BaseActivityViewModel
 abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> :
     BaseMvvMActivity<V, VM>() {
 
-    protected lateinit var controllableProvider: ControllableProvider
+    protected var controllableProvider: ControllableProvider?=null
 
     private val onActivityResultDispatcher = OnActivityResultDispatcher()
     private val onKeyDownDispatcher = OnKeyDownDispatcher()
@@ -25,7 +25,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         controllableProvider = ControllableProvider.with(this)
-        controllableProvider.get().onCreate()
+        controllableProvider?.get()?.onCreate()
         initParams()
         initViewModelParams()
         initView()
@@ -43,7 +43,8 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     }
 
     override fun onDestroy() {
-        controllableProvider.get().onDestroy()
+        controllableProvider?.get()?.onDestroy()
+        controllableProvider=null
         super.onDestroy()
     }
 
@@ -78,23 +79,23 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
     }
 
     override fun showLoading(isOutsideEnable: Boolean, isBackEnable: Boolean, onCanceledListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllableProvider.get().showLoading(isOutsideEnable, isBackEnable, onCanceledListener, extra)
+        controllableProvider?.get()?.showLoading(isOutsideEnable, isBackEnable, onCanceledListener, extra)
     }
 
     override fun showSuccess(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllableProvider.get().showSuccess(text, onDismissListener, extra)
+        controllableProvider?.get()?.showSuccess(text, onDismissListener, extra)
     }
 
     override fun showFail(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllableProvider.get().showFail(text, onDismissListener, extra)
+        controllableProvider?.get()?.showFail(text, onDismissListener, extra)
     }
 
     override fun hideLoading() {
-        controllableProvider.get().hideLoading()
+        controllableProvider?.get()?.hideLoading()
     }
 
     override fun showMessage(text: String, onDismissListener: (() -> Unit)?, extra: Array<out Any?>) {
-        controllableProvider.get().showMessage(text, onDismissListener, extra)
+        controllableProvider?.get()?.showMessage(text, onDismissListener, extra)
     }
 
     override fun getContext(): Context? {
