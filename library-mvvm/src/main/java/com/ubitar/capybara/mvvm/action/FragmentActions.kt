@@ -128,7 +128,7 @@ open class FragmentActions {
 
     }
 
-    class StartWithPopAction : SingleLiveAction<ISupportFragment>() {
+    class StartWithPopAction : SingleLiveAction<WeakReference<ISupportFragment>>() {
 
         override fun describe(): String {
             return "ISupportFragment.startWithPop()"

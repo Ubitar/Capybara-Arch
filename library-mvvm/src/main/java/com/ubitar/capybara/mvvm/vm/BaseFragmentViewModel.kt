@@ -108,7 +108,7 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
      * Start the target Fragment and pop itself
      */
     fun startWithPop(toFragment: ISupportFragment) {
-        baseActions.startWithPopAction.call(toFragment)
+        baseActions.startWithPopAction.call(WeakReference(toFragment))
     }
 
     /**
