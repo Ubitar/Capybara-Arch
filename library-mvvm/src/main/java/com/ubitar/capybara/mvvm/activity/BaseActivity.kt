@@ -42,6 +42,11 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseActivityViewModel<*>> 
         super.onBeforeObservable()
     }
 
+    override fun onDestroy() {
+        controllableProvider.get().onDestroy()
+        super.onDestroy()
+    }
+
     override fun finish() {
         super.finish()
         val enterAnim = intent.getIntExtra(CUSTOM_POP_ENTER_TRANSITION_ANIMATION_TAG, R.anim.h_fragment_pop_enter)
