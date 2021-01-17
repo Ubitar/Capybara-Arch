@@ -3,6 +3,7 @@ package com.ubitar.capybara.mvvm.vm
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import androidx.lifecycle.LifecycleOwner
 import com.ubitar.capybara.mvvm.action.FragmentActions
 import com.ubitar.capybara.mvvm.model.BaseModel
 import com.weikaiyun.fragmentation.ISupportFragment
@@ -12,6 +13,16 @@ abstract class BaseFragmentViewModel<M : BaseModel>(application: Application) :
     BaseViewModel<M>(application) {
 
     private lateinit var baseActions: FragmentActions
+
+    /** 初始化事件 */
+    override fun initEvent(lifecycle: LifecycleOwner) {
+
+    }
+
+    /** 初始化数据  */
+    override fun initData() {
+
+    }
 
     fun onBackPressedSupport() {
         baseActions.onBackPressedSupportAction.call()

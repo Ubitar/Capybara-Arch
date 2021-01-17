@@ -1,6 +1,7 @@
 package com.ubitar.capybara.mvvm.vm
 
 import android.app.Application
+import androidx.lifecycle.LifecycleOwner
 import com.ubitar.capybara.mvvm.action.DialogActions
 import com.ubitar.capybara.mvvm.model.BaseModel
 
@@ -8,6 +9,16 @@ abstract class BaseDialogViewModel<M : BaseModel>(application: Application) :
     BaseViewModel<M>(application) {
 
     private lateinit var baseActions: DialogActions
+
+    /** 初始化事件 */
+    override fun initEvent(lifecycle: LifecycleOwner) {
+
+    }
+
+    /** 初始化数据  */
+    override fun initData() {
+
+    }
 
     fun post(runnable: Runnable) {
         baseActions.postAction.call(runnable)

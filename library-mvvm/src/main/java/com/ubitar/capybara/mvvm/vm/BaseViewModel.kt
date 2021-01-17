@@ -13,27 +13,19 @@ abstract class BaseViewModel<M : BaseModel>(application: Application) :
 
     protected lateinit var model: M
 
-    /** 是否已初始化数据 */
-    internal var isUnInitData = true
+    private  lateinit var lifecycle: WeakReference<LifecycleOwner>
 
     init {
         createModel()
     }
 
-    lateinit var lifecycle: WeakReference<LifecycleOwner>
-
     override fun injectLifecycleOwner(lifecycle: LifecycleOwner) {
         this.lifecycle = WeakReference(lifecycle)
     }
 
-    /** 初始化事件 */
-    override fun initEvent(lifecycle: LifecycleOwner) {
-
-    }
-
-    /** 初始化数据  */
-    override fun initData() {
-        isUnInitData = false
+    override fun onCleared() {
+        lifecycle.clear()
+        super.onCleared()
     }
 
     /** 创建数据层 Model */
@@ -43,8 +35,12 @@ abstract class BaseViewModel<M : BaseModel>(application: Application) :
         ) as M
     }
 
-    override fun onCleared() {
-        lifecycle.clear()
-        super.onCleared()
+    fun requireLifecycle():LifecycleOwner{
+        return lifecycle.get()!!
     }
+
+    fun getLifecycle():LifecycleOwner?{
+        return lifecycle.get()
+    }
+
 }
